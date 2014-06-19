@@ -1,0 +1,40 @@
+/**
+ * Styles for the jQuery Plugin tagedit
+ *
+ * Copyright (c) 2010 Oliver Albrecht <info@webwork-albrecht.de>
+ *
+ * @author Oliver Albrecht info@webwork-albrecht.de
+ * @version 1.1.0
+ *
+ */
+
+/**
+ * Styles of the tagedit inputsforms
+ */
+.tagedit-list {color: white; margin: 0; padding: 5px 5px 0 5px; border: 1px solid #c6c6c6; width: 200px; overflow: auto; font-size: 11px; min-height: 19px;-khtml-border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
+.tagedit-list li.tagedit-listelement {list-style-type: none; /*float: left;*/ margin: 0 5px 5px 0; padding: 0; /*min-width: 100%;*/}
+/* New Item input */
+.tagedit-list li.tagedit-listelement-new input {border: 0; height: 100%; padding: 2px 5px; width: 15px; background: #fff;}
+.tagedit-list li.tagedit-listelement-new input:focus {outline: none;}
+.tagedit-list li.tagedit-listelement-new input.tagedit-input-disabled {display: none;}
+/* Item that is put to the List */
+.tagedit-list li.tagedit-listelement-old {background: #F9361A url(./images/disc.png) 4px center no-repeat; border: 1px solid #F9361A; padding: 2px 0 2px 13px; -moz-border-radius: 8px 4px 4px 8px; -webkit-border-radius: 8px 4px 4px 8px; border-radius: 8px 4px 4px 8px;}
+.tagedit-list li.tagedit-listelement-old:hover {background-color: #F9361A;}
+.tagedit-list li.tagedit-listelement-old a.tagedit-close,
+.tagedit-list li.tagedit-listelement-old a.tagedit-break,
+.tagedit-list li.tagedit-listelement-old a.tagedit-delete,
+.tagedit-list li.tagedit-listelement-old a.tagedit-save {font-weight: bold; text-indent: -2000px; display: inline-block; width: 15px; height: 100%; cursor: pointer; border-left: 1px dotted #ffffff; margin: 0 2px 0 5px; background: url(./images/cross.png) center center no-repeat;}
+.tagedit-list li.tagedit-listelement-old a.tagedit-save {background-image: url(./images/tick.png); margin-right: 0;}
+.tagedit-list li.tagedit-listelement-old a.tagedit-break {background-image: url(./images/undo.png); margin-right: 0;}
+.tagedit-list li.tagedit-listelement-old a.tagedit-delete {background-image: url(./images/delete.png); margin: 0 5px 0 2px; background-position: right center;}
+/* Items that are edited */
+.tagedit-list li.tagedit-listelement-edit input.tagedit-edit-input {border: 0; background: transparent; font-size: 11px; color: white; padding: 0;}
+.tagedit-list li.tagedit-listelement-edit input:focus {outline: none;}
+.tagedit-list li.tagedit-listelement-edit a.tagedit-break {border: 0; margin-left: 0;}
+.tagedit-list li.tagedit-listelement-edit a.tagedit-close,
+.tagedit-list li.tagedit-listelement-edit span {display: none;}
+/* Item is marked as deleted */
+.tagedit-list li.tagedit-listelement-deleted,
+.tagedit-list li.tagedit-listelement-deleted:hover {padding-right: 5px; background-color: #FFD6D6; border-color: #FFB7B7; border-style: dashed; }
+.tagedit-list li.tagedit-listelement-deleted span {text-decoration: line-through;}
+.tagedit-list li.tagedit-listelement-deleted a.tagedit-close {margin-right: 0;}

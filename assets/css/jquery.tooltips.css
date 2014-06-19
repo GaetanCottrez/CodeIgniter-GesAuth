@@ -1,0 +1,35 @@
+.toolTip-picture img,.toolTip-thumbnail img {
+	border: 2px solid #000;
+}
+
+.toolTip-picture,.toolTip-thumbnail {
+	background: transparent url(./images/loading.gif) no-repeat center
+		center;
+	min-height: 32px;
+	min-width: 32px;
+}
+
+.toolTip-caption {
+	position: relative;
+	margin-top: -20px;
+}
+
+.toolTip-text,.toolTip-caption {
+	font: 11px Arial, Helvetica, sans-serif;
+	color: #FFF;
+	/*text-align:center;*/
+	/*background:transparent url(images/caption-right.png) no-repeat right center;*/
+	background-color: black;
+	padding-right: 20px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+}
+
+.toolTip-text span,.toolTip-caption span {
+	display: block;
+	/* background:transparent url(images/caption-left.png) no-repeat left center;*/
+	background-color: black;
+	padding: 11px 0px 15px 20px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+}
