@@ -29,7 +29,7 @@ class Users extends Tools_crud {
 		 $this->config_vars = & $this->config->item('gesauth');
 
          $this->table = PREFIX.'users';
-		 $this->lang->load($this->name_class);
+		 $this->lang->load($this->name_class,$this->language);
 		 $this->title = $this->lang->line('user_title');
 
 		 $this->load->model('Users_model');

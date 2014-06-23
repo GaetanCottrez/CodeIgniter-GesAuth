@@ -1,4 +1,5 @@
 <?php
+	$lang['list_title'] 			= 'List';
 	$lang['list_add'] 				= 'Add';
 	$lang['list_actions'] 			= 'Actions';
 	$lang['list_page'] 				= 'Page';
@@ -76,7 +77,13 @@
 	/* Added in version 1.3.1 */
 	$lang['list_export'] 	= "Export";
 	$lang['list_print'] 	= "Print";
+	$lang['list_copy'] 	= "Copy";
 	$lang['minimize_maximize'] = 'Minimize/Maximize';
-	
+
+
 	/* Added in version 1.4 */
 	$lang['list_view'] = 'View';
+	$lang['list_all_see'] = 'See all';
+	$lang['list_restore'] = 'Restore';
+	$lang['list_columns'] = 'Columns';
+	$lang['list_lines'] = 'Lines';

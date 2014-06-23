@@ -29,8 +29,8 @@ $lang['menu_logout'] = "Disconnect";
 $lang['menu_admin'] = "Administration";
 
 $lang['menu_other'] = "Autres";
-$lang['menu_users'] = "Utilisateurs";
-$lang['menu_groups'] = "Groupes";
+$lang['menu_users'] = "Users";
+$lang['menu_groups'] = "Groups";
 
 /* End of file menu_lang.php */
 /* Location: ./system/language/french/menu_lang.php */

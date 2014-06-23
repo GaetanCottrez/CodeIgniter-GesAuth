@@ -17,7 +17,7 @@
 	<?php echo form_password(array('name'=>'password','value'=>'','class'=>'form-control password textbox ','style'=>'width:200px;')); ?><br />
 	</span>
 	<p>
-	<?php echo form_submit('submit','S\'identifier','id="submit" class="submit"'); ?>
+	<?php echo form_submit('submit',$lang['login_submit_login'],'id="submit" class="submit"'); ?>
 	</p>
 	<?php echo form_close("\n"); ?>
 </div>
@@ -29,7 +29,7 @@ $(document).ready(function() {
 			password : $('.password').val(),
 			ajax : '1'
 		};
-		
+
 		$.ajax({
 			url: "<?php echo site_url('login/ajax_check'); ?>",
 			type: 'POST',

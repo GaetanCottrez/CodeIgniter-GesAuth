@@ -256,7 +256,7 @@ if ( ! function_exists('ConvertTimestampMySQLToDateFr'))
 }
 
 /**
-  * Fonction am�lior� du trim
+  * Fonction amélioré du trim
   * @property string $chaine
   * @param string $chaine
   * @access public
@@ -273,6 +273,14 @@ if ( ! function_exists('ConvertTimestampMySQLToDateFr'))
 	}
 }
 
+/**
+  * Fonction amélioré du var_dump formattant le dump des variable
+  * @property string $variable
+  * @param string $variable
+  * @param string $height (optionnal)
+  * @access public
+  */
+
 if ( ! function_exists('htmldump'))
 {
 	function htmldump($variable, $height="250px") {
@@ -280,6 +288,35 @@ if ( ! function_exists('htmldump'))
 		var_dump($variable);
 		echo "</pre>\n";
 	}
+
+}
+
+/**
+ * Fonction recupérant la langue du visiteur
+ * @access public
+ * @return string $Langue
+ */
+
+if ( ! function_exists('GetLanguageVistor'))
+{
+	function GetLanguageVistor() {
+		$Langue = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+		$Langue = strtolower(substr(chop($Langue[0]),0,2));
+		switch($Langue){
+			case 'fr':
+				$Langue = 'french';
+				break;
+
+			case 'en':
+				$Langue = 'english';
+				break;
+			default:
+				$Langue = 'english';
+				break;
+		}
+		return $Langue;
+	}
+
 }
 /* End of file webges_helper.php */
 /* Location: ./application/helpers/webges_helper.php */

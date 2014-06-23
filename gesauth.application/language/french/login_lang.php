@@ -3,14 +3,14 @@
 /**
  * Language login for Gesauth
  *
- * Copyright (C) 2014 Gaëtan Cottrez.
+ * Copyright (C) 2014 Gaï¿½tan Cottrez.
  *
  *
  * @package    	Login
- * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
+ * @copyright  	Copyright (c) 2014, GaÃ«tan Cottrez
  * @license
  * @version    	1.0
- * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
+ * @author 		GaÃ«tan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  *
  *
  */
@@ -24,6 +24,7 @@ $lang['login_input_password'] = "Mot de passe";
 $lang['login_input_submit'] = "S'identifier";
 $lang['login_field_required'] = "Veuillez remplir le champ %s";
 $lang['login_success'] = "Connexion rÃ©ussi. Veuillez patienter...";
+$lang['login_submit_login'] = "S'identifier";
 
 /* End of file login_lang.php */
 /* Location: ./system/language/french/login_lang.php */

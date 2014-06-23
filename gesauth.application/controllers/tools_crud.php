@@ -22,16 +22,18 @@
 	protected $name_class="";
 	protected $title="";
 	protected $view;
+	protected $language;
 
 	function __construct()
 	{
 		parent::__construct();
 
-		$this->lang->load('tools_crud');
 		$this->load->library('grocery_CRUD');
 		$this->grocery_crud->set_model('custom_query_crud_model');
 		$this->config_vars = & $this->config->item('gesauth');
-        $this->grocery_crud->set_language($this->session->userdata($this->config_vars['prefix_session'].'language'));
+		$this->language = $this->session->userdata($this->config_vars['prefix_session'].'language');
+        $this->grocery_crud->set_language($this->language);
+		$this->lang->load('tools_crud',$this->language);
 		$this->theme = 'gesauth';
 		$this->view = 'gesauth/list';
 	}

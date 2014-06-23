@@ -24,12 +24,17 @@ $this->load->library("GesAuth");
 ```
 ##Accounts user
 ```php
- - username / password / group : gaetan.cottrez / admin / Admin
- - username / password / group : john.doe / admin / default
+ - username / password / group / language : gaetan.cottrez / admin / Admin / french
+ - username / password / group / language : john.doe / admin / default / english
+```
+
+##Demo
+```php
+ 	http://gesauth.laviedunwebdeveloper.com/login
 ```
 
 ##Most important method
-```php 
+```php
  - login user : $this->gesauth->login($login,$password, $remember) => see controller login.php
  - error login : $this->gesauth->get_errors()  => see controller login.php
  - check user is login : $this->gesauth->is_loggedin()  => see library Template.php

@@ -29,7 +29,7 @@ class Groups extends Tools_crud {
 		 $this->config_vars = & $this->config->item('gesauth');
 
          $this->table = PREFIX.'groups';
-		 $this->lang->load($this->name_class);
+		 $this->lang->load($this->name_class,$this->language);
 		 $this->title = $this->lang->line('group_title');
 
 		 $this->load->model('Groups_model');

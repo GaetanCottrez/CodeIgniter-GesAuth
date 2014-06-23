@@ -173,7 +173,7 @@ class Template {
 			for($y=0;$y<count($li[$i]);$y++){
 				if(!isset($li[$i][$y]['Class'])) $li[$i][$y]['Class'] = '';
 				if(!isset($li[$i][$y]['Blank'])) $li[$i][$y]['Blank'] = '';
-				$this->var['menu'] .= '<li>'.link_balise($this->CI->lang->line($li[$i][$y]['Name']),$li[$i][$y]['Link'],$li[$i][$y]['Class'],$li[$i][$y]['Blank']).'</li>';
+				if(isset($li[$i][$y]['Link']) && isset($li[$i][$y]['Name']))$this->var['menu'] .= '<li>'.link_balise($this->CI->lang->line($li[$i][$y]['Name']),$li[$i][$y]['Link'],$li[$i][$y]['Class'],$li[$i][$y]['Blank']).'</li>';
 			}
 			$this->var['menu'] .= '</ul>';
 			$this->var['menu'] .= '</div>';
@@ -186,7 +186,7 @@ class Template {
 
 	public function load_menu(){
 		$sess = get_object_vars($this->CI->session);
-		$this->CI->lang->load('menu');
+		$this->CI->lang->load('menu',$sess['userdata'][$this->config_vars['prefix_session'].'language']);
 		$this->var['menu'] .= '<ul id="menu">';
 		// Accueil
 		$this->var['menu'] .= '<li><a href="#" class="drop" title="'.$this->CI->lang->line('menu_home')

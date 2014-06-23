@@ -20,13 +20,15 @@ class Login extends CI_Controller {
 	private $title="";
 	private $name_class="login";
 	private $var = array();
+	private $language = '';
 	public function __construct()
 	{
 		//	Obligatoire
 		parent::__construct();
 
 		//Set du titre
-		$this->lang->load($this->name_class);
+		$this->language = GetLanguageVistor();
+		$this->lang->load($this->name_class,$this->language);
 		$this->title = $this->lang->line('welcome_title');
 		$this->var['output'] = '';
 		$this->var['class'] = '';
@@ -58,6 +60,7 @@ class Login extends CI_Controller {
 		$data['lang']['login_paragraph1'] = $this->lang->line('login_paragraph1');
 		$data['lang']['login_input_login'] = $this->lang->line('login_input_login');
 		$data['lang']['login_input_password'] = $this->lang->line('login_input_password');
+		$data['lang']['login_submit_login'] = $this->lang->line('login_submit_login');
 
 		// On charge le titre de la page
 		if($this->title != "") $this->template->set_title($this->title);
