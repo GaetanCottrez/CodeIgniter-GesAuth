@@ -2,7 +2,19 @@
 	<h2><?php echo $lang['login_title']; ?></h2>
 	<p><?php echo $lang['login_paragraph1']; ?></p>
 </div>
-<div id="message"></div>
+<div id="message">
+<?php
+if(isset($errors) && count($errors) > 0){
+	foreach ($errors as $row)
+	{
+		$var['output'] = $row;
+		$var['class'] = "alert alert-danger alert-dismissable";
+		$var['javascript'] = '';
+		$this->load->view('login/login_message',$var);
+	}
+}
+?>
+</div>
 <div id="login-box">
 	<h1><a href="<?php echo site_url(); ?>"><?php echo SITE_NAME; ?></a></h1>
 	<?php
@@ -16,6 +28,11 @@
 	<label for="password"><?php echo $lang['login_input_password']; ?></label>
 	<?php echo form_password(array('name'=>'password','value'=>'','class'=>'form-control password textbox ','style'=>'width:200px;')); ?><br />
 	</span>
+	<span id="gesauth_mode">
+	<label for="gesauth_mode"><?php echo $lang['gesauth_authentification_mode']; ?></label>
+	<?php echo form_dropdown('gesauth_mode', $options, $option_selected); ?><br />
+	</span>
+	<br />
 	<p>
 	<?php echo form_submit('submit',$lang['login_submit_login'],'id="submit" class="submit"'); ?>
 	</p>

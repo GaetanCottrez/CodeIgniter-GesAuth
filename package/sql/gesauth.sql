@@ -2,10 +2,10 @@
 -- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mar 17 Juin 2014 à 21:49
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.16
+-- Client: localhost:3307
+-- Généré le: Lun 07 Juillet 2014 à 19:56
+-- Version du serveur: 5.5.34-MariaDB
+-- Version de PHP: 5.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -70,6 +70,44 @@ CREATE TABLE IF NOT EXISTS `gesauth_languages` (
 INSERT INTO `gesauth_languages` (`id`, `name`, `value`, `CreatedBy`, `CreatedDate`, `ModifiedBy`, `ModifiedDate`) VALUES
 (1, 'Français', 'french', 'gaetan.cottrez', '2014-05-06 11:39:26', 'gaetan.cottrez', '2014-05-06 11:39:26'),
 (2, 'Anglais', 'english', 'gaetan.cottrez', '2014-05-06 11:39:26', 'gaetan.cottrez', '2014-05-06 11:39:26');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `gesauth_logs_authentification`
+--
+
+CREATE TABLE IF NOT EXISTS `gesauth_logs_authentification` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) NOT NULL,
+  `date` timestamp NULL DEFAULT NULL,
+  `ip_address` varchar(16) NOT NULL DEFAULT '0',
+  `user_agent` varchar(120) DEFAULT NULL,
+  `type` varchar(15) NOT NULL DEFAULT 'unknown',
+  `informations_log` text NOT NULL,
+  `authentification` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `fk_logs_authentification_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `gesauth_logs_perms`
+--
+
+CREATE TABLE IF NOT EXISTS `gesauth_logs_perms` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) DEFAULT NULL,
+  `date` timestamp NULL DEFAULT NULL,
+  `ip_address` varchar(16) NOT NULL DEFAULT '0',
+  `user_agent` varchar(120) DEFAULT NULL,
+  `type` varchar(15) NOT NULL DEFAULT 'unknown',
+  `informations_log` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_logs_perms_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -145,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `gesauth_sessions` (
 --
 
 INSERT INTO `gesauth_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('40fe3855299359766a987185183859b4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403034296, 'a:9:{s:9:"user_data";s:0:"";s:7:"user_id";s:14:"gaetan.cottrez";s:9:"user_name";s:7:"Cottrez";s:14:"user_firstname";s:7:"Gaëtan";s:10:"user_email";s:39:"gaetan.cottrez@laviedunwebdeveloper.com";s:13:"user_language";s:6:"french";s:15:"user_last_login";s:19:"2014-06-15 21:10:14";s:13:"user_loggedin";b:1;s:11:"user_groups";a:1:{i:0;a:2:{s:2:"id";s:1:"3";s:4:"name";s:7:"Default";}}}');
+('75530e5210e29c4e7bb8fd68d17b53a0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1404761862, 'a:3:{s:9:"user_data";s:0:"";s:18:"last_login_attempt";i:1404761862;s:16:"user_agent_close";i:0;}');
 
 -- --------------------------------------------------------
 
@@ -176,8 +214,8 @@ CREATE TABLE IF NOT EXISTS `gesauth_users` (
 --
 
 INSERT INTO `gesauth_users` (`id`, `email`, `password`, `name`, `firstname`, `disabled`, `last_login`, `last_activity`, `last_login_attempt`, `forgot_exp`, `remember_time`, `remember_exp`, `language`) VALUES
-('gaetan.cottrez', 'gaetan.cottrez@laviedunwebdeveloper.com', '0ef51ee05d9f051599650acbe46cce8afda3d2ec', 'Cottrez', 'Gaëtan', 0, '2014-06-15 21:10:14', '2014-06-17 21:48:03', '2014-05-04 17:34:00', NULL, '2014-05-02 00:00:00', '2PFp2hAHruXmWQiH', 1),
-('john.doe', 'john.doe@laviedunwebdeveloper.com', '0ef51ee05d9f051599650acbe46cce8afda3d2ec', 'Doe', 'John', 0, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+('gaetan.cottrez', 'gaetan.cottrez@laviedunwebdeveloper.com', '0ef51ee05d9f051599650acbe46cce8afda3d2ec', 'Cottrez', 'Gaëtan', 0, '2014-07-07 11:02:47', '2014-07-07 11:07:59', '2014-07-02 23:16:29', NULL, '2014-05-02 00:00:00', '2PFp2hAHruXmWQiH', 1),
+('john.doe', 'john.doe@laviedunwebdeveloper.com', '0ef51ee05d9f051599650acbe46cce8afda3d2ec', 'Doe', 'John', 0, NULL, '2014-07-02 23:21:58', NULL, NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 

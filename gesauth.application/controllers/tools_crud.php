@@ -3,14 +3,15 @@
 /**
  * Tools Crud for GesAuth, controllers parent for all crud
  *
- * Copyright (C) 2014 Ga�tan Cottrez.
+ * Copyright (C) 2014 Gaëtan Cottrez.
  *
  *
  * @package    	grocery CRUD
- * @copyright  	Copyright (c) 2014, Ga�tan Cottrez
- * @license
- * @version    	1.0
- * @author 		Ga�tan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
+ * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
+ * @license 	GNU GENERAL PUBLIC LICENSE
+ * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
+ * @version    	1.1
+ * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  *
  *
  */

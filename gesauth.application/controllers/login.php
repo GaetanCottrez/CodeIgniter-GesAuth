@@ -3,16 +3,17 @@
 /**
  * Controller Login for Gesauth
  *
+ * A Codeigniter library authentification based on Aauth.
+ *
  * Copyright (C) 2014 Gaëtan Cottrez.
  *
  *
- * @package    	Gesauth
+ * @package    	GesAuth
  * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
- * @license
- * @version    	1.0
+ * @license 	GNU GENERAL PUBLIC LICENSE
+ * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
+ * @version    	1.1
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
- *
- *
  */
 
 class Login extends CI_Controller {
@@ -27,7 +28,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 
 		//Set du titre
-		$this->language = GetLanguageVistor();
+		$this->language = GetLanguageVistor($this->input->server('HTTP_ACCEPT_LANGUAGE'));
 		$this->lang->load($this->name_class,$this->language);
 		$this->title = $this->lang->line('welcome_title');
 		$this->var['output'] = '';
@@ -52,7 +53,7 @@ class Login extends CI_Controller {
 
 	public function login()
 	{
-		$this->is_loggedin();
+		//$this->is_loggedin();
 		$data = array();
 
 		$data['lang']['welcome_title'] = $this->lang->line('welcome_title');
@@ -61,12 +62,22 @@ class Login extends CI_Controller {
 		$data['lang']['login_input_login'] = $this->lang->line('login_input_login');
 		$data['lang']['login_input_password'] = $this->lang->line('login_input_password');
 		$data['lang']['login_submit_login'] = $this->lang->line('login_submit_login');
-
+		$data['lang']['gesauth_authentification_mode'] = $this->lang->line('gesauth_authentification_mode');
 		// On charge le titre de la page
 		if($this->title != "") $this->template->set_title($this->title);
+		if($this->session->userdata('errors_gesauth')){
+			$data['errors'] = $this->session->userdata('errors_gesauth');
+		}
+
+		if(!$this->gesauth->get_status_server()){
+			unset($this->gesauth->array_gesauth_mode['ldap']);
+			$data['errors'][] = $this->lang->line('gesauth_authentification_mode');
+		}
+		$data['options'] = $this->gesauth->array_gesauth_mode;
+		$data['option_selected'] = $this->gesauth->gesauth_mode_default;
+
 
 		$this->template->view('login/login',$data);
-
 	}
 
 	public function logout(){
@@ -90,7 +101,7 @@ class Login extends CI_Controller {
 				$this->var['javascript'] .= "$('#password').addClass('has-error');";
 
 			} else {
-				if ($this->gesauth->login($this->input->post('login'),$this->input->post('password'), false)){
+				if ($this->gesauth->login($this->input->post('login'),$this->input->post('password'), false, $this->input->post('gesauth_mode'))){
 	           		$this->var['output'] = $this->lang->line('login_success');
 					$this->var['class'] = "alert alert-success alert-dismissable";
 
@@ -118,7 +129,11 @@ class Login extends CI_Controller {
 			$this->load->view('login/login_message',$this->var);
 		}
 	}
+
+	public function ajax_close_browser() {
+		$this->gesauth->close_browser(1);
+	}
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file login.php */
+/* Location: ./application/controllers/login.php */

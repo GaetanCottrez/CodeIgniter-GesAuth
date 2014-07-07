@@ -26,7 +26,6 @@ $lang['menu_in_groups'] = "Vous êtes dans le groupe ";
 $lang['menu_in_no_group'] = "Vous êtes dans aucun groupe";
 $lang['menu_logout'] = "Déconnexion";
 
-
 $lang['menu_admin'] = "Administration";
 
 $lang['menu_other'] = "Autres";

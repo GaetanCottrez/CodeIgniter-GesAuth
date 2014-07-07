@@ -9,8 +9,9 @@
  *
  * @package    	Gesauth
  * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
- * @license
- * @version    	1.0
+ * @license 	GNU GENERAL PUBLIC LICENSE
+ * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
+ * @version    	1.1
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 

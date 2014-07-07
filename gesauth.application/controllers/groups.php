@@ -3,14 +3,16 @@
 /**
  * Controller Groups for Gesauth
  *
+ * A Codeigniter library authentification based on Aauth.
  *
  * Copyright (C) 2014 Gaëtan Cottrez.
  *
  *
- * @package    	Users
+ * @package    	GesAuth
  * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
- * @license
- * @version    	1.0
+ * @license 	GNU GENERAL PUBLIC LICENSE
+ * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
+ * @version    	1.1
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 
@@ -50,7 +52,14 @@ class Groups extends Tools_crud {
 		$fields = array();
 		$relation = 'LEFT JOIN (SELECT group_id, COUNT(group_id) AS NbUse FROM `'.PREFIX.'user_to_group` GROUP BY 1) jb80bb774 ON `jb80bb774`.`group_id` = `'.PREFIX.'groups`.`id`';
 		$fields[] = 'jb80bb774.NbUse';
-		$jeditable = "!".$this->table.";name;name;text!";
+		// GESAUTH CONTROL
+		// MODIFY
+		if($this->gesauth->control('modify_user') == true){
+			$jeditable = "!".$this->table.";name;name;text!";
+		}else{
+			$jeditable = '!|!';
+		}
+
 		$array_columns = array('name');
 		// On charge le titre de la page
 		if($this->title != "") $this->template->set_title($this->title);

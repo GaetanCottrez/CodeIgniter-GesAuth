@@ -3,7 +3,11 @@
 /**
  * Template Library
  * Handle masterview and views within masterview
- * @author Gaëtan Cottrez
+ * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
+ * @license 	GNU GENERAL PUBLIC LICENSE
+ * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
+ * @version    	1.1
+ * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  *
  */
 
@@ -47,21 +51,34 @@ class Template {
 		// Initialisation des fichiers JS
 		$this->add_file_js('jquery-2.1.0.min');
 		$this->add_file_js('bootstrap.min');
+		$this->add_file_js('gesauth');
 
-		// Check que l'utilisateur est bien connect�
+		// Check que l'utilisateur est bien connecté
 		$this->is_loggedin();
 	}
 
 	public function is_loggedin() {
-		if (!$this->CI->gesauth->is_loggedin()){
-			$explode_uri = explode('/',uri_string());
-			$explode_uri = $explode_uri[0];
-			if($explode_uri != URI_LOGIN) redirect('/login/', 'refresh');
+		// Si l'utilisateur n'est pas connecté
+		$explode_uri = explode('/',uri_string());
+		$uri_login = $explode_uri[0];
+		if(isset($explode_uri[1])){
+			$uri_logout = $explode_uri[1];
 		}else{
+			$uri_logout = '';
+		}
+
+		if($uri_logout == URI_CLOSE_BROWSER) return;
+
+		if (!$this->CI->gesauth->is_loggedin()){
+			if($uri_login != URI_LOGIN) redirect('/'.URI_LOGIN.'/', 'refresh');
+			return;
+		}else{
+			if($uri_login == URI_LOGIN && $uri_logout != URI_LOGOUT){
+				redirect('/', 'refresh');
+				return;
+			}
 			// SET du Menu
 			$this->load_menu();
-			// Mise à jour de l'activité
-			$this->CI->gesauth->update_activity($this->CI->session->userdata($this->config_vars['prefix_session'].'id'));
 		}
 	}
 

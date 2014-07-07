@@ -54,15 +54,15 @@ if ( ! function_exists('img_balise'))
 if ( ! function_exists('site_url'))
 {
 	function site_url($uri = '')
-	{		
+	{
 		if( ! is_array($uri))
 		{
-			//	Tous les paramètres sont insérés dans un tableau
+			//	Tous les paramï¿½tres sont insï¿½rï¿½s dans un tableau
 			$uri = func_get_args();
 		}
-	
+
 		//	On ne modifie rien ici
-		$CI =& get_instance();	
+		$CI =& get_instance();
 		return $CI->config->site_url($uri);
 	}
 }
@@ -76,12 +76,12 @@ if ( ! function_exists('link_balise'))
 		if($class != ""){
 			$class ='class="'.$class.'"';
 		}
-	
+
 		if($target != ""){
 			$target ='target="'.$target.'"';
 		}
-	
-		return '<a '.$class.' '.$target.' href="' . site_url($uri) . '">' . htmlentities($text) . '</a>';
+
+		return '<a '.$class.' '.$target.' href="' . site_url($uri) . '">' . $text . '</a>';
 	}
 }
 

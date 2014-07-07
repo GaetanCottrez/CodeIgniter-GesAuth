@@ -3,14 +3,16 @@
 /**
  * Controller Users for Gesauth
  *
+ * A Codeigniter library authentification based on Aauth.
  *
  * Copyright (C) 2014 Gaëtan Cottrez.
  *
  *
- * @package    	Users
+ * @package    	GesAuth
  * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
- * @license
- * @version    	1.0
+ * @license 	GNU GENERAL PUBLIC LICENSE
+ * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
+ * @version    	1.1
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 
@@ -65,7 +67,13 @@ class Users extends Tools_crud {
 		$relation = 'LEFT JOIN (SELECT user_id, COUNT(user_id) AS NbUse FROM `'.PREFIX.'user_to_group` GROUP BY 1) jb80bb774 ON `jb80bb774`.`user_id` = `'.PREFIX.'users`.`id`';
 		$fields[] = 'jb80bb774.NbUse';
 		$array_columns = array('id', 'email', 'name', 'firstname', 'disabled', 'last_login', 'last_activity', 'language');
-		$jeditable = "!".$this->table.";email;email;text;unique|".$this->table.";name;name;text|".$this->table.";firstname;firstname;text|".$this->table.";disabled;disabled;select;".$jeditable_disabled."|".$this->table.";language;s8512ae7d;select;".$jeditable_language."!";
+		// GESAUTH CONTROL
+		// MODIFY
+		if($this->gesauth->control('modify_user') == true){
+			$jeditable = "!".$this->table.";email;email;text;unique|".$this->table.";name;name;text|".$this->table.";firstname;firstname;text|".$this->table.";disabled;disabled;select;".$jeditable_disabled."|".$this->table.";language;s8512ae7d;select;".$jeditable_language."!";
+		}else{
+			$jeditable = '!|!';
+		}
 		// On charge le titre de la page
 		if($this->title != "") $this->template->set_title($this->title);
 		// column
