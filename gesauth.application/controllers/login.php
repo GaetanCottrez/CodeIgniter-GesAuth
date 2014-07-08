@@ -68,10 +68,9 @@ class Login extends CI_Controller {
 		if($this->session->userdata('errors_gesauth')){
 			$data['errors'] = $this->session->userdata('errors_gesauth');
 		}
-
-		if(!$this->gesauth->get_status_server()){
+		if($this->gesauth->get_status_server()){
 			unset($this->gesauth->array_gesauth_mode['ldap']);
-			$data['errors'][] = $this->lang->line('gesauth_authentification_mode');
+			$data['errors'][] = $this->lang->line('gesauth_authentification_ldap_temporarily_unavailable');
 		}
 		$data['options'] = $this->gesauth->array_gesauth_mode;
 		$data['option_selected'] = $this->gesauth->gesauth_mode_default;
@@ -125,7 +124,6 @@ class Login extends CI_Controller {
 
 				}
 			}
-
 			$this->load->view('login/login_message',$this->var);
 		}
 	}

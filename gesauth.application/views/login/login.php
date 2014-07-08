@@ -30,7 +30,7 @@ if(isset($errors) && count($errors) > 0){
 	</span>
 	<span id="gesauth_mode">
 	<label for="gesauth_mode"><?php echo $lang['gesauth_authentification_mode']; ?></label>
-	<?php echo form_dropdown('gesauth_mode', $options, $option_selected); ?><br />
+	<?php echo form_dropdown('gesauth_mode', $options, $option_selected, 'class="gesauth_mode"'); ?><br />
 	</span>
 	<br />
 	<p>
@@ -44,6 +44,7 @@ $(document).ready(function() {
 		var form_data = {
 			login : $('.login').val(),
 			password : $('.password').val(),
+			gesauth_mode : $('.gesauth_mode').val(),
 			ajax : '1'
 		};
 

@@ -71,6 +71,8 @@ $config['gesauth'] = array(
     'gesauth_mode' => 'mysql/ldap', # different values (mysql,ldap,mysql/ldap) if you use mode LDAP, activate extension PHP ldap
 	// default mode authentification
     'gesauth_mode_default' => 'mysql', # different values (mysql,ldap)
+	// Use OpenLDAP_2.x.x ?
+	'OpenLDAP_2.x.x' => true,
 	// Is a previous win2k server ?
 	'PREVIOUS_WIN2K' => false,
 	// LDAP Domain
@@ -79,9 +81,9 @@ $config['gesauth'] = array(
 	'LDAP_DC' => 'serveur.test.intra', # exemple : serveur.test.intra
 	// LDAP PORT DC
 	'LDAP_PORT_DC' => 389, # default port dc is 389
-	// LDAP AD USER
+	// LDAP AD USER (if yout use OpenLDAP 2.x.x)
 	'LDAP_AD_USER' => 'php', # exemple : php
-	// LDAP USER PASSWORD
+	// LDAP USER PASSWORD (if yout use OpenLDAP 2.x.x)
 	'LDAP_AD_USER_PASSWORD' => 'password', # exemple : password
 	// LDAP AD OU
 	'LDAP_AD_OU' => 'CN=Users,DC=test,DC=intra' # exemple : CN=Users,DC=test,DC=intra

@@ -144,11 +144,20 @@ class Gesauth {
      private function etablish_connection_ldap(){
     	if($this->ldap_auth){
     		$this->ldap_connect = ldap_connect ( $this->config_vars['LDAP_DC'], $this->config_vars['LDAP_PORT_DC'] );
-    		if (!$this->ldap_connect) {
+			if (!$this->ldap_connect) {
     			$this->ldap_temporarily_unavailable = true;
     			$this->gesauth_logs_message('gesauth ldap info', sprintf($this->CI->lang->line('gesauth_unable_to_connect_server_ldap'), $this->config_vars['LDAP_DC']));
     		}
-    	}
+			
+			// if you use OpenLDAP_2.x.x, test etablish connection with a valid account for verify available LDAP
+			if($this->config_vars['OpenLDAP_2.x.x']){
+				$bind = ldap_bind ( $this->ldap_connect, $this->config_vars['LDAP_AD_USER'], $this->config_vars['LDAP_AD_USER_PASSWORD'] );
+				if (! $bind) {
+					$this->ldap_temporarily_unavailable = true;
+					$this->gesauth_logs_message('gesauth ldap info', sprintf($this->CI->lang->line('gesauth_unable_to_connect_server_ldap'), $this->config_vars['LDAP_DC']));
+				}
+			}
+		}
     }
 
     /**
@@ -323,32 +332,24 @@ class Gesauth {
 
 		// build id user by server version
 		if ($this->config_vars['PREVIOUS_WIN2K'])
-			$id = $array [0];
+			$id_ldap = $array [0];
 		else
-			$id = $array [0] . '@' . $this->config_vars['LDAP_DOMAIN'];
-
-		// Authentification server ldap
-		$bind = ldap_bind ( $this->ldap_connect, $id, $pass );
-		if (! $bind) {
-			$this->error($this->CI->lang->line('gesauth_wrong'));
-			return false;
-		}
+			$id_ldap = $array [0] . '@' . $this->config_vars['LDAP_DOMAIN'];
 
 		//build a filter by version server
 		if ($this->config_vars['PREVIOUS_WIN2K'])
-			$filter = "(samAccountName=" . $id . ")";
+			$filter = "(samAccountName=" . $id_ldap . ")";
 		else
-			$filter = "(userPrincipalName=" . $id . ")";
+			$filter = "(userPrincipalName=" . $id_ldap . ")";
 
 		//this is an array from the AD
-		$justthese = array ("ou", "sn", "givenname", "cn", "mail", "displayName", "uid" );
-
+		$justthese = array( "ou", "sn", "givenname", "cn", "mail", "displayName", "uid", "title", "telephonenumber", "mobile", "userAccountControl");
+		
 		//start the search ldap
 		$search = ldap_search ( $this->ldap_connect, $this->config_vars['LDAP_AD_OU'], $filter, $justthese );
-
+		
 		// get value user
 		$res = ldap_get_entries ( $this->ldap_connect, $search );
-
 		if ($res ["count"] != 1) {
 			$this->error($this->CI->lang->line('gesauth_no_result_to_search_ldap'));
 			return false;
@@ -403,11 +404,10 @@ class Gesauth {
 				return false;
 			}
 		}
-
+		
 		// get user by id into database
 		$query = null;
 		$query = $this->gesauth_model->get_user($id);
-
 		$row = $query->row();
 
 		if ($query->num_rows() > 0) {
@@ -424,7 +424,8 @@ class Gesauth {
 					//$this->config_vars['prefix_session'].'mobile' => $res[0]["mobile"][0],
 					$this->config_vars['prefix_session'].'loggedin' => TRUE
 			);
-
+			
+			$this->session->set_userdata($data);
 			// id remember selected
 			if ($remember){
 				$expire = $this->config_vars['remember'];
