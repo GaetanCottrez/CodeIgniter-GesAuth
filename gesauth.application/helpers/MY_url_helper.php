@@ -119,5 +119,13 @@ if ( ! function_exists('redirect'))
 	}
 }
 
+if ( ! function_exists('javascript_code_redirect'))
+{
+	function javascript_code_redirect($uri = '', $dom = 'window', $time = 0)
+	{
+		return 'setTimeout(function(){'.$dom.'.location.href="'.$uri.'"} , '.$time.');';
+	}
+}
+
 /* End of file MY_url_helper.php */
 /* Location: ./application/helpers/MY_url_helper.php */

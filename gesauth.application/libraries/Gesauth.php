@@ -151,7 +151,7 @@ class Gesauth {
 			
 			// if you use OpenLDAP_2.x.x, test etablish connection with a valid account for verify available LDAP
 			if($this->config_vars['OpenLDAP_2.x.x']){
-				$bind = ldap_bind ( $this->ldap_connect, $this->config_vars['LDAP_AD_USER'], $this->config_vars['LDAP_AD_USER_PASSWORD'] );
+				$bind = @ldap_bind ( $this->ldap_connect, $this->config_vars['LDAP_AD_USER'], $this->config_vars['LDAP_AD_USER_PASSWORD'] );
 				if (! $bind) {
 					$this->ldap_temporarily_unavailable = true;
 					$this->gesauth_logs_message('gesauth ldap info', sprintf($this->CI->lang->line('gesauth_unable_to_connect_server_ldap'), $this->config_vars['LDAP_DC']));
