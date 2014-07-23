@@ -22,15 +22,15 @@ $lang['menu_lastconnexion'] = "Last connection";
 $lang['menu_never'] = "Never";
 $lang['menu_dashboard'] = "Dashboard";
 $lang['menu_all_right_reserved'] = "All right reserved";
-$lang['menu_in_groups'] = "You are in the group ";
-$lang['menu_in_no_group'] = "You are in any group";
+$lang['menu_in_roles'] = "You endorse the role ";
+$lang['menu_in_no_role'] = "You endorse any role";
 $lang['menu_logout'] = "Disconnect";
 
 $lang['menu_admin'] = "Administration";
 
-$lang['menu_other'] = "Autres";
+$lang['menu_other'] = "Others";
 $lang['menu_users'] = "Users";
-$lang['menu_groups'] = "Groups";
+$lang['menu_roles'] = "Roles";
 
 /* End of file menu_lang.php */
 /* Location: ./system/language/french/menu_lang.php */

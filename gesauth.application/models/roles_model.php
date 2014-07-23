@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Models CRUD Groups for Gesauth
+ * Models CRUD Roles for Gesauth
  *
  *
  * Copyright (C) 2014 Gaëtan Cottrez.
@@ -15,7 +15,7 @@
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 
- class Groups_model extends CI_Model
+ class Roles_model extends CI_Model
 {
 	function __construct() {
 		parent::__construct();

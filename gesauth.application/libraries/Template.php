@@ -185,7 +185,7 @@ class Template {
 		$this->var['menu'] .= '<div class="dropdown_'.$nb_column.'column'.$s.' '.$title['Align'].'">';
 		for($i=0;$i<$nb_column;$i++){
 			$this->var['menu'] .= '<div class="col_'.$col.'">';
-			if(isset($li[$i][0]['h3'])) $this->var['menu'] .= '<h3>'.htmlentities($this->CI->lang->line($li[$i][0]['h3'])).'</h3>';
+			if(isset($li[$i][0]['h3'])) $this->var['menu'] .= '<h3>'.$this->CI->lang->line($li[$i][0]['h3']).'</h3>';
 			$this->var['menu'] .= '<ul class="greybox">';
 			for($y=0;$y<count($li[$i]);$y++){
 				if(!isset($li[$i][$y]['Class'])) $li[$i][$y]['Class'] = '';
@@ -227,17 +227,17 @@ class Template {
 		else
 			$this->var['menu'] .= $this->CI->lang->line('menu_never');
 		$this->var['menu'] .= '</p>';
-		// Affichage du groupe utilisateur
-		if(count($sess['userdata'][$this->config_vars['prefix_session'].'groups']) > 0){
-			$text_group = '';
-			foreach ($sess['userdata'][$this->config_vars['prefix_session'].'groups'] as $row)
+		// Affichage du role utilisateur
+		if(count($sess['userdata'][$this->config_vars['prefix_session'].'roles']) > 0){
+			$text_role = '';
+			foreach ($sess['userdata'][$this->config_vars['prefix_session'].'roles'] as $row)
 			{
-				$text_group .= $row['name'].', ';
+				$text_role .= $row['name'].', ';
 			}
-			$text_group = substr($text_group,0,-2);
-			$this->var['menu'] .= $this->CI->lang->line('menu_in_groups').$text_group;
+			$text_role = substr($text_role,0,-2);
+			$this->var['menu'] .= $this->CI->lang->line('menu_in_roles').$text_role;
 		}else{
-			$this->var['menu'] .= $this->CI->lang->line('menu_in_no_group');
+			$this->var['menu'] .= $this->CI->lang->line('menu_in_no_role');
 		}
 
 		$this->var['menu'] .= '</div>';
@@ -272,11 +272,11 @@ class Template {
 
 		$x++;
 		$y = 0;
-		$li[$x][$y]['h3'] = 'menu_groups';
-		// Groups
-		if($this->CI->gesauth->control('menu_groups') == true){
-			$li[$x][$y]['Name'] = 'menu_groups';
-			$li[$x][$y]['Link'] = '/groups/';
+		$li[$x][$y]['h3'] = 'menu_roles';
+		// roles
+		if($this->CI->gesauth->control('menu_roles') == true){
+			$li[$x][$y]['Name'] = 'menu_roles';
+			$li[$x][$y]['Link'] = '/roles/';
 			$y++;
 		}
 		$this->add_element_menu($title,$nb_column,$col,$li);

@@ -28,7 +28,7 @@ $lang['user_last_activity'] ="Last activity";
 $lang['user_password'] ="Password";
 $lang['user_password_confirm'] ="Password confirmation";
 $lang['user_language'] ="Language";
-$lang['user_groups'] ="Groups";
+$lang['user_roles'] ="Roles";
 
 
 /* End of file user_lang.php */

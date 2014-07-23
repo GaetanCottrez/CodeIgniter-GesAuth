@@ -5,12 +5,12 @@ by [Gaëtan Cottrez](http://laviedunwebdeveloper.com/)
 ##Description
 GesAuth is a fork to Aauth (https://github.com/emreakay/CodeIgniter-Aauth). Thank a lot to the author =).
 I created this library about an example that serves as starter kit for a web application.
-It contains a CRUD for managing users and groups with permissions generated with Grocery CRUD (https://github.com/scoumbourdis/grocery-crud).
+It contains a CRUD for managing users and roles with permissions generated with Grocery CRUD (https://github.com/scoumbourdis/grocery-crud).
 It also contains a web application design generated via a custom bookstore (template.php) created by me.
 The folder package contains all files to library GesAuth
 
 ##Latest release
-GesAuth 1.1.2 (22/07/2014)
+GesAuth 1.1.3 (23/07/2014)
 
 ##What is new in version 1.1
  - Add logs authentification and perms in database
@@ -57,8 +57,8 @@ $this->load->library("GesAuth");
 
 ##Accounts user
 ```php
- - username / password / group / language : gaetan.cottrez / admin / Admin / french
- - username / password / group / language : john.doe / admin / default / english
+ - username / password / role / language : gaetan.cottrez / admin / Admin / french
+ - username / password / role / language : john.doe / admin / default / english
 ```
 
 ##Demo

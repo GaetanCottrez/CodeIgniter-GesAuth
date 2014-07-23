@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Language for groups
+ * Language for roles
  *
  * Copyright (C) 2014 Gaëtan Cottrez.
  *
  *
- * @package    	Groups
+ * @package    	Roles
  * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
  * @license
  * @version    	1.0
@@ -16,10 +16,10 @@
  */
 
 
-$lang['group_title'] ="List of groups";
-$lang['group_group'] ="group";
-$lang['group_name'] ="Name";
-$lang['group_perms'] ="Permissions";
+$lang['role_title'] ="List of roles";
+$lang['role_role'] ="role";
+$lang['role_name'] ="Name";
+$lang['role_perms'] ="Permissions";
 
 /* End of file user_lang.php */
-/* Location: ./system/language/french/group_lang.php */
+/* Location: ./system/language/french/role_lang.php */

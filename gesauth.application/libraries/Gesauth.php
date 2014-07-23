@@ -148,7 +148,7 @@ class Gesauth {
     			$this->ldap_temporarily_unavailable = true;
     			$this->gesauth_logs_message('gesauth ldap info', sprintf($this->CI->lang->line('gesauth_unable_to_connect_server_ldap'), $this->config_vars['LDAP_DC']));
     		}
-			
+
 			// if you use OpenLDAP_2.x.x, test etablish connection with a valid account for verify available LDAP
 			if($this->config_vars['OpenLDAP_2.x.x']){
 				$bind = @ldap_bind ( $this->ldap_connect, $this->config_vars['LDAP_AD_USER'], $this->config_vars['LDAP_AD_USER_PASSWORD'] );
@@ -344,10 +344,10 @@ class Gesauth {
 
 		//this is an array from the AD
 		$justthese = array( "ou", "sn", "givenname", "cn", "mail", "displayName", "uid", "title", "telephonenumber", "mobile", "userAccountControl");
-		
+
 		//start the search ldap
 		$search = ldap_search ( $this->ldap_connect, $this->config_vars['LDAP_AD_OU'], $filter, $justthese );
-		
+
 		// get value user
 		$res = ldap_get_entries ( $this->ldap_connect, $search );
 		if ($res ["count"] != 1) {
@@ -404,7 +404,7 @@ class Gesauth {
 				return false;
 			}
 		}
-		
+
 		// get user by id into database
 		$query = null;
 		$query = $this->gesauth_model->get_user($id);
@@ -424,7 +424,7 @@ class Gesauth {
 					//$this->config_vars['prefix_session'].'mobile' => $res[0]["mobile"][0],
 					$this->config_vars['prefix_session'].'loggedin' => TRUE
 			);
-			
+
 			$this->session->set_userdata($data);
 			// id remember selected
 			if ($remember){
@@ -437,9 +437,9 @@ class Gesauth {
 				setcookie( 'user', $id . "-" . $random_string, time() + 99*999*999, '/');
 			}
 
-			// Get group user and built session groups
+			// Get role user and built session roles
 			$query = null;
-			$query = $this->gesauth_model->get_user_groups($id);
+			$query = $this->gesauth_model->get_user_roles($id);
 			if ($query->num_rows() > 0) {
 				$data = array();
 				foreach ($query->result() as $row)
@@ -449,7 +449,7 @@ class Gesauth {
 							'name' => $row->name
 					);
 				}
-				$this->session->set_userdata($this->config_vars['prefix_session'].'groups',$data);
+				$this->session->set_userdata($this->config_vars['prefix_session'].'roles',$data);
 
 			}
 			// update last login
@@ -566,8 +566,8 @@ class Gesauth {
     			setcookie( 'user', $row->id . "-" . $random_string, time() + 99*999*999, '/');
     		}
 
-    		// Get group user and built session groups
-    		$query = $this->gesauth_model->get_user_groups($id);
+    		// Get role user and built session roles
+    		$query = $this->gesauth_model->get_user_roles($id);
     		if ($query->num_rows() > 0) {
     			$data = array();
     			foreach ($query->result() as $row)
@@ -577,7 +577,7 @@ class Gesauth {
     						'name' => $row->name
     				);
     			}
-    			$this->session->set_userdata($this->config_vars['prefix_session'].'groups',$data);
+    			$this->session->set_userdata($this->config_vars['prefix_session'].'roles',$data);
 
     		}
     		// update last login
@@ -936,22 +936,22 @@ class Gesauth {
 
 
     /**
-	 *	group_name or group_id
+	 *	role_name or role_id
 	 *
 	 *	@access public
-	 *	@param string $group_par is the user group
+	 *	@param string $role_par is the user role
 	 *	@return bool
 	 */
 
-	public function is_member($group_par) {
+	public function is_member($role_par) {
 
         $user_id = $this->session->userdata($this->config_vars['prefix_session'].'id');
 
-        $this->get_group_id($group_par);
-        // group_id given
-        if (is_numeric($group_par)) {
+        $this->get_role_id($role_par);
+        // role_id given
+        if (is_numeric($role_par)) {
 
-            $query = $this->gesauth_model->check_user_is_member($user_id, $group_par);
+            $query = $this->gesauth_model->check_user_is_member($user_id, $role_par);
 
             $row = $query->row();
 
@@ -962,10 +962,10 @@ class Gesauth {
             }
         }
 
-        // group_name given
+        // role_name given
         else {
 
-            $query = $this->gesauth_model->get_group_id($group_par);
+            $query = $this->gesauth_model->get_role_id($role_par);
 
             if ($query->num_rows() == 0)
                 return FALSE;
@@ -976,29 +976,29 @@ class Gesauth {
     }
 
     /**
-	 *	check user is in admin group
+	 *	check user is in admin role
 	 *
 	 *	@access public
 	 *	@return bool
 	 */
 
 	public function is_admin() {
-        return $this->is_member($this->config_vars['admin_group']);
+        return $this->is_member($this->config_vars['admin_role']);
     }
 
     /**
-	 *	takes group paramater (id or name) and returns group id.
+	 *	takes role paramater (id or name) and returns role id.
 	 *
 	 *	@access public
-	 *	@param string $group_par is the user group
-	 *	@return int id group
+	 *	@param string $role_par is the user role
+	 *	@return int id role
 	 */
 
-	public function get_group_id($group_par) {
+	public function get_role_id($role_par) {
 
-        if( is_numeric($group_par) ) { return $group_par; }
+        if( is_numeric($role_par) ) { return $role_par; }
 
-        $query = $this->gesauth_model->get_group_id($group_par);
+        $query = $this->gesauth_model->get_role_id($role_par);
 
         if ($query->num_rows() == 0)
             return FALSE;
@@ -1009,24 +1009,24 @@ class Gesauth {
 
 
     /**
-	 *	checks if a group has permitions for given permition
-	 *	if group paramater is empty function checks all groups of current user
+	 *	checks if a role has permitions for given permition
+	 *	if role paramater is empty function checks all roles of current user
 	 *	admin authorized for anything
 	 *
 	 *	@access public
-	 *	@param string $group_par is the user group
-	 *	@param string $perm_par is the perm group
-	 *	@return int id group
+	 *	@param string $role_par is the user role
+	 *	@param string $perm_par is the perm role
+	 *	@return int id role
 	 */
 
-	public function is_allowed($group_par=false, $perm_par){
+	public function is_allowed($role_par=false, $perm_par){
 
         $perm_id = $this->get_perm_id($perm_par);
 
-        if($group_par != false){
+        if($role_par != false){
 
-            $group_par = $this->get_group_id($group_par);
-            $query = $this->gesauth_model->check_perm_affected_to_group($perm_id, $group_par);
+            $role_par = $this->get_role_id($role_par);
+            $query = $this->gesauth_model->check_perm_affected_to_role($perm_id, $role_par);
 
             if( $query->num_rows() > 0){
                 return true;
@@ -1041,7 +1041,7 @@ class Gesauth {
             // all doors open to admin :)
             if ( $this->is_admin() ) {return true;}
 
-            $query = $this->gesauth_model->get_user_groups( $this->session->userdata($this->config_vars['prefix_session'].'id') );
+            $query = $this->gesauth_model->get_user_roles( $this->session->userdata($this->config_vars['prefix_session'].'id') );
 			foreach ($query->result() as $g ){
 				 if($this->is_allowed($g -> id, $perm_id)){
                     return true;
@@ -1058,8 +1058,8 @@ class Gesauth {
 	 *	get the perm id
 	 *
 	 *	@access public
-	 *	@param string $perm_par is the perm group
-	 *	@return int id group
+	 *	@param string $perm_par is the perm role
+	 *	@return int id role
 	 */
 
 	public function get_perm_id($perm_par) {

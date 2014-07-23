@@ -105,18 +105,18 @@ class gesauth_model extends CI_Model
 
 
 	/**
-	 *	Get groups by user.
+	 *	Get roles by user.
 	 *
 	 *	@param string $user_id 	id of table user
 	 *	@return object		result of request
 	 */
-	public function get_user_groups($user_id = false){
+	public function get_user_roles($user_id = false){
 
 		if ($user_id==false) { $user_id = $this->CI->session->userdata($this->config_vars['prefix_session'].'id'); }
 
 		return $this->CI->db->select('id, name')
-							->from($this->config_vars['user_to_group'])
-							->join($this->config_vars['groups'], "id = group_id")
+							->from($this->config_vars['user_to_role'])
+							->join($this->config_vars['roles'], "id = role_id")
 							->where('user_id', $user_id)
 							->get();
 	}
@@ -155,15 +155,15 @@ class gesauth_model extends CI_Model
 	}
 
 	/**
-	 *	takes group paramater (id or name) and returns group id.
+	 *	takes role paramater (id or name) and returns role id.
 	 *
-	 *	@param array $group_par is the id or name group
+	 *	@param array $role_par is the id or name role
 	 *	@return object		result of request
 	 */
-	public function get_group_id($group_par) {
+	public function get_role_id($role_par) {
 
-		return $this->CI->db->where('name', $group_par)
-							  ->get($this->config_vars['groups']);
+		return $this->CI->db->where('name', $role_par)
+							  ->get($this->config_vars['roles']);
 
 	}
 
@@ -193,32 +193,32 @@ class gesauth_model extends CI_Model
 	}
 
 	/**
-	 *	check user is member to group
+	 *	check user is member to role
 	 *
 	 *	@param array $user_id is the id user
-	 *	@param array $group_par is the id or name group
+	 *	@param array $role_par is the id or name role
 	 *	@return object		result of request
 	 */
-	public function check_user_is_member($user_id, $group_par) {
+	public function check_user_is_member($user_id, $role_par) {
 
 		return $this->CI->db->where('user_id', $user_id)
-							->where('group_id', $group_par)
-						  	->get($this->config_vars['user_to_group']);
+							->where('role_id', $role_par)
+						  	->get($this->config_vars['user_to_role']);
 
 	}
 
 	/**
-	 *	check perm affected to group
+	 *	check perm affected to role
 	 *
 	 *	@param array $perm_id is the id perm
-	 *	@param array $group_par is the id or name group
+	 *	@param array $role_par is the id or name role
 	 *	@return object		result of request
 	 */
-	public function check_perm_affected_to_group($perm_id, $group_par) {
+	public function check_perm_affected_to_role($perm_id, $role_par) {
 
 		return $this->CI->db->where('perm_id', $perm_id)
-							->where('group_id', $group_par)
-							->get( $this->config_vars['perm_to_group'] );
+							->where('role_id', $role_par)
+							->get( $this->config_vars['perm_to_role'] );
 
 	}
 

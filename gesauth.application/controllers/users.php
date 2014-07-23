@@ -64,7 +64,7 @@ class Users extends Tools_crud {
 		$jeditable_disabled = $this->_jeditable_bool();
 
 		$fields = array();
-		$relation = 'LEFT JOIN (SELECT user_id, COUNT(user_id) AS NbUse FROM `'.PREFIX.'user_to_group` GROUP BY 1) jb80bb774 ON `jb80bb774`.`user_id` = `'.PREFIX.'users`.`id`';
+		$relation = 'LEFT JOIN (SELECT user_id, COUNT(user_id) AS NbUse FROM `'.PREFIX.'user_to_role` GROUP BY 1) jb80bb774 ON `jb80bb774`.`user_id` = `'.PREFIX.'users`.`id`';
 		$fields[] = 'jb80bb774.NbUse';
 		$array_columns = array('id', 'email', 'name', 'firstname', 'disabled', 'last_login', 'last_activity', 'language');
 		// GESAUTH CONTROL
@@ -85,7 +85,7 @@ class Users extends Tools_crud {
 							 ->columns($array_columns)
 							  // DISPLAY AS
 							 ->display_as('id',$this->lang->line('user_login'))
-							 ->display_as('groups',$this->lang->line('user_groups'))
+							 ->display_as('roles',$this->lang->line('user_roles'))
 							 ->display_as('password',$this->lang->line('user_password'))
 		 					 ->display_as('verify_password',$this->lang->line('user_password_confirm'))
 		 					 ->display_as('password_edit',$this->lang->line('user_password'))
@@ -99,14 +99,14 @@ class Users extends Tools_crud {
 		 					 ->display_as('language',$this->lang->line('user_language'))
 		 					 ->display_as('begin_fieldset_identify',$this->lang->line('tools_fieldset_identify'))
 		 					 ->display_as('end_fieldset_identify','')
-		 					 ->display_as('begin_fieldset_groups',$this->lang->line('tools_fieldset_internal_organisation'))
-		 					 ->display_as('end_fieldset_groups','')
+		 					 ->display_as('begin_fieldset_roles',$this->lang->line('tools_fieldset_internal_organisation'))
+		 					 ->display_as('end_fieldset_roles','')
 		 					 // FIELDS
-		 					 ->add_fields('begin_fieldset_identify', 'id', 'name', 'firstname', 'password','verify_password', 'email', 'language', 'end_fieldset_identify', 'begin_fieldset_groups', 'groups', 'end_fieldset_groups')
+		 					 ->add_fields('begin_fieldset_identify', 'id', 'name', 'firstname', 'password','verify_password', 'email', 'language', 'end_fieldset_identify', 'begin_fieldset_roles', 'roles', 'end_fieldset_roles')
 		 					 // EDIT FIELDS
-		 					 ->edit_fields('begin_fieldset_identify','id', 'name', 'firstname', 'password','verify_password', 'email', 'disabled', 'language', 'end_fieldset_identify', 'begin_fieldset_groups', 'groups', 'end_fieldset_groups')
+		 					 ->edit_fields('begin_fieldset_identify','id', 'name', 'firstname', 'password','verify_password', 'email', 'disabled', 'language', 'end_fieldset_identify', 'begin_fieldset_roles', 'roles', 'end_fieldset_roles')
 		 					 // REQUIRED FIELDS
-		 					 ->required_fields('email', 'name', 'firstname', 'password', 'verify_password','language', 'groups')
+		 					 ->required_fields('email', 'name', 'firstname', 'password', 'verify_password','language', 'roles')
 		 					 // CHANGE FIELD TYPE
 		 					 ->change_field_type('email', 'alpha_numeric')
 							 ->change_field_type('name', 'alpha_numeric')
@@ -127,23 +127,23 @@ class Users extends Tools_crud {
 							 ->set_rules('email', $this->lang->line('user_email'), 'trim|required|valid_email|callback__check_unique_email|xss_clean')
 							 // SET RELATION
 							 ->set_relation('language',PREFIX.'languages','Name')
-							 ->set_relation_n_n('groups', PREFIX.'user_to_group', PREFIX.'groups', 'user_id', 'group_id', 'name')
-							 //->set_relation('id',PREFIX.'user_to_group','user_id')
+							 ->set_relation_n_n('roles', PREFIX.'user_to_role', PREFIX.'roles', 'user_id', 'role_id', 'name')
+							 //->set_relation('id',PREFIX.'user_to_role','user_id')
 							 // CALLBACK ADD FIELD
 							 ->callback_add_field('password',array($this,'_set_password_input_to_empty'))
  							 ->callback_add_field('verify_password',array($this,'_set_verify_password_input_to_empty'))
  							 ->callback_add_field('begin_fieldset_identify',array($this,'_fake_callback'))
  							 ->callback_add_field('end_fieldset_identify',array($this,'_fake_callback'))
- 							 ->callback_add_field('begin_fieldset_groups',array($this,'_fake_callback'))
- 							 ->callback_add_field('end_fieldset_groups',array($this,'_fake_callback'))
+ 							 ->callback_add_field('begin_fieldset_roles',array($this,'_fake_callback'))
+ 							 ->callback_add_field('end_fieldset_roles',array($this,'_fake_callback'))
  							 ->callback_add_field('id',array($this,'_custom_field_id_user'))
  							 // CALLBACK EDIT FIELD
 							 ->callback_edit_field('password',array($this,'_set_password_input_to_empty'))
     						 ->callback_edit_field('verify_password',array($this,'_set_verify_password_input_to_empty'))
  							 ->callback_edit_field('begin_fieldset_identify',array($this,'_fake_callback'))
     						 ->callback_edit_field('end_fieldset_identify',array($this,'_fake_callback'))
-    						 ->callback_edit_field('begin_fieldset_groups',array($this,'_fake_callback'))
- 							 ->callback_edit_field('end_fieldset_groups',array($this,'_fake_callback'))
+    						 ->callback_edit_field('begin_fieldset_roles',array($this,'_fake_callback'))
+ 							 ->callback_edit_field('end_fieldset_roles',array($this,'_fake_callback'))
  							 ->callback_edit_field('id',array($this,'_just_display_value_callback'))
  							 // CALLBACK BEFORE UPDATE
 							 ->callback_before_update(array($this,'_encrypt_password_callback'))

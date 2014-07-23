@@ -24,22 +24,22 @@ if (!defined('BASEPATH'))
 $config['gesauth'] = array(
     // The table which contains language
     'logs_gesauth' => true,
-	//name of admin group
-    'admin_group' => 'admin',
+	//name of admin role
+    'admin_role' => 'admin',
     // The table which contains users
     'users' => PREFIX.'users',
     // The table which contains language
     'languages' => PREFIX.'languages',
 	// The table which contains language
 	'join_users_languages' => PREFIX.'languages.id = '.PREFIX.'users.Language',
-    // the group table
-    'groups' => PREFIX.'groups',
-    // the link user to group
-    'user_to_group' => PREFIX.'user_to_group',
+    // the role table
+    'roles' => PREFIX.'roles',
+    // the link user to role
+    'user_to_role' => PREFIX.'user_to_role',
     // permitions
     'perms' => PREFIX.'perms',
-    // perms to group
-    'perm_to_group' => PREFIX.'perm_to_group',
+    // perms to role
+    'perm_to_role' => PREFIX.'perm_to_role',
     // The table which contains language
     'logs_authentification' => PREFIX.'logs_authentification',
 	// The table which contains language

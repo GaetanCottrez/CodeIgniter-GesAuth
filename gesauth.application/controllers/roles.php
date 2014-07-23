@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Controller Groups for Gesauth
+ * Controller Roles for Gesauth
  *
  * A Codeigniter library authentification based on Aauth.
  *
@@ -17,11 +17,11 @@
  */
 
 include APPPATH.'controllers/tools_crud.php';
-class Groups extends Tools_crud {
+class Roles extends Tools_crud {
 	protected $table;
 	protected $config_vars;
     protected $theme='flexigrid';
-	protected $name_class="groups";
+	protected $name_class="roles";
 	protected $title="";
 
 	function __construct()
@@ -30,27 +30,27 @@ class Groups extends Tools_crud {
 
 		 $this->config_vars = & $this->config->item('gesauth');
 
-         $this->table = PREFIX.'groups';
+         $this->table = PREFIX.'roles';
 		 $this->lang->load($this->name_class,$this->language);
-		 $this->title = $this->lang->line('group_title');
+		 $this->title = $this->lang->line('role_title');
 
-		 $this->load->model('Groups_model');
+		 $this->load->model('Roles_model');
 
 	}
 
 	public function index()
 	{
-		 if($this->gesauth->control('menu_groups') == true){
-		 	$this->list_groups();
+		 if($this->gesauth->control('menu_roles') == true){
+		 	$this->list_roles();
 		 }else{
 		 	redirect(site_url());
 		 }
 	}
 
-	public function list_groups()
+	public function list_roles()
 	{
 		$fields = array();
-		$relation = 'LEFT JOIN (SELECT group_id, COUNT(group_id) AS NbUse FROM `'.PREFIX.'user_to_group` GROUP BY 1) jb80bb774 ON `jb80bb774`.`group_id` = `'.PREFIX.'groups`.`id`';
+		$relation = 'LEFT JOIN (SELECT role_id, COUNT(role_id) AS NbUse FROM `'.PREFIX.'user_to_role` GROUP BY 1) jb80bb774 ON `jb80bb774`.`role_id` = `'.PREFIX.'roles`.`id`';
 		$fields[] = 'jb80bb774.NbUse';
 		// GESAUTH CONTROL
 		// MODIFY
@@ -68,19 +68,19 @@ class Groups extends Tools_crud {
 							 // unset action
 							 ->unset_read()
 		 					 ->set_table($this->table)
-							 ->set_subject($this->lang->line('group_group'))
+							 ->set_subject($this->lang->line('role_role'))
 							 ->columns($array_columns)
 							  // DISPLAY AS
-							 ->display_as('name',$this->lang->line('group_name'))
-							 ->display_as('perms',$this->lang->line('group_perms'))
+							 ->display_as('name',$this->lang->line('role_name'))
+							 ->display_as('perms',$this->lang->line('role_perms'))
 							 ->display_as('begin_fieldset_identify',$this->lang->line('tools_fieldset_identify'))
 		 					 ->display_as('end_fieldset_identify','')
-		 					 ->display_as('begin_fieldset_groups',$this->lang->line('tools_fieldset_internal_organisation'))
-		 					 ->display_as('end_fieldset_groups','')
+		 					 ->display_as('begin_fieldset_roles',$this->lang->line('tools_fieldset_internal_organisation'))
+		 					 ->display_as('end_fieldset_roles','')
 		 					 // FIELDS
-		 					 ->add_fields('begin_fieldset_identify', 'name', 'begin_fieldset_groups', 'perms', 'end_fieldset_groups', 'CreatedBy', 'CreatedDate', 'ModifiedBy', 'ModifiedDate', 'end_fieldset_identify')
+		 					 ->add_fields('begin_fieldset_identify', 'name', 'begin_fieldset_roles', 'perms', 'end_fieldset_roles', 'CreatedBy', 'CreatedDate', 'ModifiedBy', 'ModifiedDate', 'end_fieldset_identify')
 		 					 // EDIT FIELDS
-		 					 ->edit_fields('begin_fieldset_identify', 'name', 'begin_fieldset_groups', 'perms', 'end_fieldset_groups', 'ModifiedBy', 'ModifiedDate', 'end_fieldset_identify')
+		 					 ->edit_fields('begin_fieldset_identify', 'name', 'begin_fieldset_roles', 'perms', 'end_fieldset_roles', 'ModifiedBy', 'ModifiedDate', 'end_fieldset_identify')
 		 					 // REQUIRED FIELDS
 		 					 ->required_fields('name')
 		 					 // CHANGE FIELD TYPE
@@ -92,7 +92,7 @@ class Groups extends Tools_crud {
 							 // SET RULE
 							 ->set_rules('name', $this->lang->line('user_name'), 'trim|required|xss_clean')
 							 // SET RELATION
-							 ->set_relation_n_n('perms', PREFIX.'perm_to_group', PREFIX.'perms', 'group_id', 'perm_id', 'name')
+							 ->set_relation_n_n('perms', PREFIX.'perm_to_role', PREFIX.'perms', 'role_id', 'perm_id', 'name')
 							 // CALLBACK ADD FIELD
 							 ->callback_add_field('CreatedBy',array($this,'_createdby_callback'))
  							 ->callback_add_field('CreatedDate',array($this,'_createddate_callback'))
@@ -100,36 +100,36 @@ class Groups extends Tools_crud {
  							 ->callback_add_field('ModifiedDate',array($this,'_modifieddate_callback'))
  							 ->callback_add_field('begin_fieldset_identify',array($this,'_fake_callback'))
  							 ->callback_add_field('end_fieldset_identify',array($this,'_fake_callback'))
- 							 ->callback_add_field('begin_fieldset_groups',array($this,'_fake_callback'))
- 							 ->callback_add_field('end_fieldset_groups',array($this,'_fake_callback'))
+ 							 ->callback_add_field('begin_fieldset_roles',array($this,'_fake_callback'))
+ 							 ->callback_add_field('end_fieldset_roles',array($this,'_fake_callback'))
  							 // CALLBACK EDIT FIELD
 							 ->callback_edit_field('begin_fieldset_identify',array($this,'_fake_callback'))
     						 ->callback_edit_field('end_fieldset_identify',array($this,'_fake_callback'))
     						 ->callback_edit_field('ModifiedBy',array($this,'_modifiedby_callback'))
  							 ->callback_edit_field('ModifiedDate',array($this,'_modifieddate_callback'))
- 							 ->callback_edit_field('begin_fieldset_groups',array($this,'_fake_callback'))
- 							 ->callback_edit_field('end_fieldset_groups',array($this,'_fake_callback'))
+ 							 ->callback_edit_field('begin_fieldset_roles',array($this,'_fake_callback'))
+ 							 ->callback_edit_field('end_fieldset_roles',array($this,'_fake_callback'))
  							 // ADD ACTIONS
 							 ->add_action('JeditableButton', '', $jeditable, 'jeditable_action')
 							 ->add_action('ControlDisplayButton', '', '', 'control_display_action', array($this,'_control_display_action'));
 							 // GESAUTH CONTROL
 							 // ADD
-							 if($this->gesauth->control('create_group') == false){
+							 if($this->gesauth->control('create_role') == false){
 							 	$this->grocery_crud->unset_add();
 							 }
 							 // MODIFY
-							 if($this->gesauth->control('modify_group') == false){
+							 if($this->gesauth->control('modify_role') == false){
 							 	$this->grocery_crud->unset_edit();
 							 }
 							 // DELETE
-							 if($this->gesauth->control('delete_group') == false){
+							 if($this->gesauth->control('delete_role') == false){
 							 	$this->grocery_crud->unset_delete();
 							 }
 							 // SET CUSTOM RELATION
 			$this->grocery_crud->basic_model->set_custom_relation($relation,$fields);
 
 		 $output = $this->grocery_crud->render();
-		 $js['js'][] = 'groups/group';
+		 $js['js'][] = 'roles/role';
 		 $this->_enjoy($this->view,$output,$js);
 	}
 
