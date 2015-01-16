@@ -7,14 +7,14 @@ if (!defined('BASEPATH'))
  *
  * A Codeigniter library authentification based on Aauth.
  *
- * Copyright (C) 2014 Gaëtan Cottrez.
+ * Copyright (C) 2014-2015 Gaëtan Cottrez.
  *
  *
  * @package    	GesAuth
- * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
+ * @copyright  	Copyright (c) 2014-2015, Gaëtan Cottrez
  * @license 	GNU GENERAL PUBLIC LICENSE
  * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
- * @version    	1.1
+ * @version    	1.1.4
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 
@@ -56,6 +56,10 @@ $config['gesauth'] = array(
 	'clean_session_user_agent_close' =>  true,
 	// gesauth time to clean all user session agent close
 	'time_to_clean_session_user_agent_close' =>  300,
+	// gesauth clean all user session expired
+	'clean_session_for_expiration' =>  true,
+	// gesauth time to clean all user session expired
+	'time_to_clean_session_for_expiration' =>  28800,
 	// register logs authentification in the database
     'active_logs_authentification' => true,
 	// register logs perms in the database

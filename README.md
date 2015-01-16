@@ -10,7 +10,7 @@ It also contains a web application design generated via a custom bookstore (temp
 The folder package contains all files to library GesAuth
 
 ##Latest release
-GesAuth 1.1.3 (23/07/2014)
+GesAuth 1.1.4 (16/01/2015)
 
 ##What is new in version 1.1
  - Add logs authentification and perms in database
