@@ -22,6 +22,15 @@ class Roles extends Tools_crud {
 	protected $config_vars;
     protected $theme='flexigrid';
 	protected $name_class="roles";
+	protected $array_columns;
+	protected $add_fields;
+	protected $edit_fields;
+	protected $required_fields;
+	protected $control_menu="menu_roles";
+	protected $control_create="create_role";
+	protected $control_modify="modify_role";
+	protected $control_delete="delete_role";
+	protected $js = 'roles/role';
 	protected $title="";
 
 	function __construct()
@@ -36,31 +45,36 @@ class Roles extends Tools_crud {
 
 		 $this->load->model('Roles_model');
 
+		 $this->array_columns = array('name');
+		 $this->add_fields = array('begin_fieldset_identify', 'name', 'begin_fieldset_roles', 'perms', 'end_fieldset_roles', 'CreatedBy', 'CreatedDate', 'ModifiedBy', 'ModifiedDate', 'end_fieldset_identify');
+		 $this->edit_fields = array('begin_fieldset_identify', 'name', 'begin_fieldset_roles', 'perms', 'end_fieldset_roles', 'ModifiedBy', 'ModifiedDate', 'end_fieldset_identify');
+		 $this->required_fields = array('name');
+
+
 	}
 
 	public function index()
 	{
-		 if($this->gesauth->control('menu_roles') == true){
-		 	$this->list_roles();
+		 if($this->gesauth->control($this->control_menu) == true){
+		 	$this->list_crud();
 		 }else{
 		 	redirect(site_url());
 		 }
 	}
 
-	public function list_roles()
+	public function list_crud()
 	{
 		$fields = array();
 		$relation = 'LEFT JOIN (SELECT role_id, COUNT(role_id) AS NbUse FROM `'.PREFIX.'user_to_role` GROUP BY 1) jb80bb774 ON `jb80bb774`.`role_id` = `'.PREFIX.'roles`.`id`';
 		$fields[] = 'jb80bb774.NbUse';
 		// GESAUTH CONTROL
 		// MODIFY
-		if($this->gesauth->control('modify_user') == true){
+		if($this->gesauth->control($this->control_modify) == true){
 			$jeditable = "!".$this->table.";name;name;text!";
 		}else{
 			$jeditable = '!|!';
 		}
 
-		$array_columns = array('name');
 		// On charge le titre de la page
 		if($this->title != "") $this->template->set_title($this->title);
 		// column
@@ -69,7 +83,7 @@ class Roles extends Tools_crud {
 							 ->unset_read()
 		 					 ->set_table($this->table)
 							 ->set_subject($this->lang->line('role_role'))
-							 ->columns($array_columns)
+							 ->columns($this->array_columns)
 							  // DISPLAY AS
 							 ->display_as('name',$this->lang->line('role_name'))
 							 ->display_as('perms',$this->lang->line('role_perms'))
@@ -78,11 +92,11 @@ class Roles extends Tools_crud {
 		 					 ->display_as('begin_fieldset_roles',$this->lang->line('tools_fieldset_internal_organisation'))
 		 					 ->display_as('end_fieldset_roles','')
 		 					 // FIELDS
-		 					 ->add_fields('begin_fieldset_identify', 'name', 'begin_fieldset_roles', 'perms', 'end_fieldset_roles', 'CreatedBy', 'CreatedDate', 'ModifiedBy', 'ModifiedDate', 'end_fieldset_identify')
+		 					 ->add_fields($this->add_fields)
 		 					 // EDIT FIELDS
-		 					 ->edit_fields('begin_fieldset_identify', 'name', 'begin_fieldset_roles', 'perms', 'end_fieldset_roles', 'ModifiedBy', 'ModifiedDate', 'end_fieldset_identify')
+		 					 ->edit_fields($this->edit_fields)
 		 					 // REQUIRED FIELDS
-		 					 ->required_fields('name')
+		 					 ->required_fields($this->required_fields)
 		 					 // CHANGE FIELD TYPE
 		 					 ->change_field_type('name', 'alpha_numeric')
 							 ->change_field_type('CreatedBy', 'hidden')
@@ -114,22 +128,23 @@ class Roles extends Tools_crud {
 							 ->add_action('ControlDisplayButton', '', '', 'control_display_action', array($this,'_control_display_action'));
 							 // GESAUTH CONTROL
 							 // ADD
-							 if($this->gesauth->control('create_role') == false){
+							 if($this->gesauth->control($this->control_create) == false){
 							 	$this->grocery_crud->unset_add();
 							 }
 							 // MODIFY
-							 if($this->gesauth->control('modify_role') == false){
-							 	$this->grocery_crud->unset_edit();
+							 if($this->gesauth->control($this->control_modify) == false){
+							  	$this->grocery_crud->unset_edit();
 							 }
 							 // DELETE
-							 if($this->gesauth->control('delete_role') == false){
-							 	$this->grocery_crud->unset_delete();
+							 if($this->gesauth->control($this->control_delete) == false){
+							  	$this->grocery_crud->unset_delete();
 							 }
 							 // SET CUSTOM RELATION
 			$this->grocery_crud->basic_model->set_custom_relation($relation,$fields);
 
 		 $output = $this->grocery_crud->render();
-		 $js['js'][] = 'roles/role';
+		 $js['js'][] = $this->js;
+	
 		 $this->_enjoy($this->view,$output,$js);
 	}
 
@@ -144,5 +159,5 @@ class Roles extends Tools_crud {
 }
 
 /* End of file main.php */
-/* Location: ./application/controllers/user.php */
+/* Location: ./application/controllers/roles.php */
 ?>

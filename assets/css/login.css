@@ -1,0 +1,85 @@
+/* login */
+#login-box {
+	width: 250px;
+	padding: 15px 0 0;
+	margin: auto;
+}
+
+#login-box h1 a {
+	background-image: url('../images/gesauth.png');
+	background-position: top center;
+	background-repeat: no-repeat;
+	height: 130px;
+	text-indent: -9999px;
+	overflow: hidden;
+	display: block;
+}
+
+#login-box fieldset {
+	width: 320px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+}
+
+#login-box legend {
+	color: #323436;
+}
+
+#login-box label {
+	display: block;
+	margin: 0 0 4px 0;
+}
+
+#login-box label span {
+	display: inline-block;
+	width: 90px;
+	font-size: 8pt;
+}
+
+#login-box .submit {
+	font-size: 13px!important;
+	line-height: 16px;
+	padding: 3px 10px;
+	float: right;
+	margin-right: 50px;
+	border-color: #A7A9AC;
+	background: #A7A9AC;
+	background: -moz-linear-gradient(top, #5C5D5F, #5C5D5F);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5C5D5F), to(#5C5D5F));
+	text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	color:white;
+	cursor:pointer;
+}
+
+#login-box .submit:hover {
+	font-size: 13px!important;
+	line-height: 16px;
+	padding: 3px 10px;
+	float: right;
+	margin-right: 50px;
+	border-color: #A7A9AC;
+	background: #A7A9AC;
+	background: -moz-linear-gradient(top, #333537, #333537);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333537), to(#333537));
+	text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	color:white;
+	text-decoration:none;
+	cursor:pointer;
+}
+
+#login-box form {
+	padding: 26px 24px 36px;
+	font-weight: normal;
+	background: white;
+	border: 1px solid #E5E5E5;
+	-moz-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+	-webkit-box-shadow: rgba(200, 200, 200, 0.7) 0 4px 10px -1px;
+	box-shadow: rgba(200, 200, 200, 0.7) 0 4px 10px -1px;
+}

@@ -435,7 +435,28 @@ INSERT INTO `gesauth_logs_authentification` (`id`, `user_id`, `date`, `ip_addres
 (396,	'0',	'2014-07-23 20:16:59',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'disconnect',	'user disconnect',	'MySQL'),
 (397,	'john.doe',	'2014-07-23 20:17:18',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
 (398,	'john.doe',	'2014-07-23 20:17:32',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'disconnect',	'user disconnect',	'MySQL'),
-(399,	'gaetan.cottrez',	'2014-07-23 20:17:47',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL');
+(399,	'gaetan.cottrez',	'2014-07-23 20:17:47',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(400,	'john.doe',	'2014-07-23 20:53:38',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(401,	'john.doe',	'2014-07-23 20:57:35',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'disconnect',	'user disconnect',	'MySQL'),
+(402,	'gaetan.cottrez',	'2014-07-23 20:59:01',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(403,	'gaetan.cottrez',	'2014-07-24 14:48:20',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(404,	'gaetan.cottrez',	'2014-07-24 20:12:41',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(405,	'gaetan.cottrez',	'2014-07-25 11:35:00',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(406,	'gaetan.cottrez',	'2014-07-27 20:02:02',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(407,	'john.doe',	'2014-07-28 11:46:57',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(408,	'john.doe',	'2014-07-28 11:47:29',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(409,	'john.doe',	'2014-07-28 11:48:08',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(410,	'john.doe',	'2014-07-28 13:40:13',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'disconnect',	'user disconnect',	'MySQL'),
+(411,	'gaetan.cottrez',	'2014-07-28 13:40:24',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(412,	'gaetan.cottrez',	'2014-07-28 13:40:27',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'disconnect',	'user disconnect',	'MySQL'),
+(413,	'gaetan.cottrez',	'2014-07-28 13:40:43',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(414,	'gaetan.cottrez',	'2014-07-28 13:40:45',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'disconnect',	'user disconnect',	'MySQL'),
+(415,	'gaetan.cottrez',	'2014-07-28 13:41:14',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(416,	'gaetan.cottrez',	'2014-07-29 14:51:33',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(417,	'gaetan.cottrez',	'2014-07-29 19:23:56',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'disconnect',	'user disconnect',	'MySQL'),
+(418,	'gaetan.cottrez',	'2014-07-29 19:24:34',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(419,	'gaetan.cottrez',	'2014-08-05 06:42:53',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'success',	'login success',	'MySQL'),
+(420,	'gaetan.cottrez',	'2014-11-01 21:18:32',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36',	'success',	'login success',	'MySQL');
 
 DROP TABLE IF EXISTS `gesauth_logs_perms`;
 CREATE TABLE `gesauth_logs_perms` (
@@ -445,33 +466,69 @@ CREATE TABLE `gesauth_logs_perms` (
   `ip_address` varchar(16) NOT NULL DEFAULT '0',
   `user_agent` varchar(120) DEFAULT NULL,
   `type` varchar(15) NOT NULL DEFAULT 'unknown',
+  `url` text NOT NULL,
   `informations_log` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_logs_perms_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `gesauth_logs_perms` (`id`, `user_id`, `date`, `ip_address`, `user_agent`, `type`, `informations_log`) VALUES
-(7,	'john.doe',	'2014-06-24 19:58:05',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'menu_roles'),
-(8,	'john.doe',	'2014-06-24 19:58:38',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'menu_roles'),
-(9,	'john.doe',	'2014-06-24 19:59:17',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'menu_roles'),
-(10,	'john.doe',	'2014-06-24 19:59:29',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'menu_roles'),
-(11,	'john.doe',	'2014-06-24 19:59:57',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'menu_roles'),
-(12,	'john.doe',	'2014-06-24 20:01:15',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'menu_roles'),
-(13,	'john.doe',	'2014-06-24 20:54:46',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'menu_roles'),
-(14,	'john.doe',	'2014-06-24 20:54:50',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'menu_roles'),
-(15,	'john.doe',	'2014-07-02 20:17:28',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(16,	'john.doe',	'2014-07-02 20:18:56',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(17,	'john.doe',	'2014-07-02 20:19:09',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(18,	'john.doe',	'2014-07-02 20:31:07',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(19,	'john.doe',	'2014-07-02 20:48:25',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(20,	'john.doe',	'2014-07-02 20:49:03',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(21,	'john.doe',	'2014-07-02 20:53:37',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(22,	'john.doe',	'2014-07-02 21:19:11',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(23,	'john.doe',	'2014-07-02 21:20:37',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(24,	'john.doe',	'2014-07-02 21:21:09',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(25,	'john.doe',	'2014-07-02 21:21:58',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'menu_roles'),
-(26,	'john.doe',	'2014-07-23 20:17:21',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'menu_roles'),
-(27,	'john.doe',	'2014-07-23 20:17:32',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'menu_roles');
+INSERT INTO `gesauth_logs_perms` (`id`, `user_id`, `date`, `ip_address`, `user_agent`, `type`, `url`, `informations_log`) VALUES
+(7,	'john.doe',	'2014-06-24 19:58:05',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(8,	'john.doe',	'2014-06-24 19:58:38',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(9,	'john.doe',	'2014-06-24 19:59:17',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(10,	'john.doe',	'2014-06-24 19:59:29',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(11,	'john.doe',	'2014-06-24 19:59:57',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(12,	'john.doe',	'2014-06-24 20:01:15',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(13,	'john.doe',	'2014-06-24 20:54:46',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(14,	'john.doe',	'2014-06-24 20:54:50',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(15,	'john.doe',	'2014-07-02 20:17:28',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(16,	'john.doe',	'2014-07-02 20:18:56',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(17,	'john.doe',	'2014-07-02 20:19:09',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(18,	'john.doe',	'2014-07-02 20:31:07',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(19,	'john.doe',	'2014-07-02 20:48:25',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(20,	'john.doe',	'2014-07-02 20:49:03',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(21,	'john.doe',	'2014-07-02 20:53:37',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(22,	'john.doe',	'2014-07-02 21:19:11',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(23,	'john.doe',	'2014-07-02 21:20:37',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(24,	'john.doe',	'2014-07-02 21:21:09',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(25,	'john.doe',	'2014-07-02 21:21:58',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',	'no_access',	'',	'menu_roles'),
+(26,	'john.doe',	'2014-07-23 20:17:21',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(27,	'john.doe',	'2014-07-23 20:17:32',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(28,	'john.doe',	'2014-07-23 20:57:31',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(29,	'john.doe',	'2014-07-23 20:57:35',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(30,	'john.doe',	'2014-07-28 11:47:00',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(31,	'john.doe',	'2014-07-28 11:47:32',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(32,	'john.doe',	'2014-07-28 11:47:55',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(33,	'john.doe',	'2014-07-28 11:47:55',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'modify_user'),
+(34,	'john.doe',	'2014-07-28 11:47:55',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'create_user'),
+(35,	'john.doe',	'2014-07-28 11:47:55',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'modify_user'),
+(36,	'john.doe',	'2014-07-28 11:47:55',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'delete_user'),
+(37,	'john.doe',	'2014-07-28 11:48:11',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(38,	'john.doe',	'2014-07-28 11:48:11',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'modify_user'),
+(39,	'john.doe',	'2014-07-28 11:48:11',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'create_user'),
+(40,	'john.doe',	'2014-07-28 11:48:11',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'modify_user'),
+(41,	'john.doe',	'2014-07-28 11:48:11',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'delete_user'),
+(42,	'john.doe',	'2014-07-28 13:40:01',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(43,	'john.doe',	'2014-07-28 13:40:07',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(44,	'john.doe',	'2014-07-28 13:40:07',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'modify_user'),
+(45,	'john.doe',	'2014-07-28 13:40:07',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'create_user'),
+(46,	'john.doe',	'2014-07-28 13:40:07',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'modify_user'),
+(47,	'john.doe',	'2014-07-28 13:40:07',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'delete_user'),
+(48,	'john.doe',	'2014-07-28 13:40:13',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(49,	'gaetan.cottrez',	'2014-07-29 19:18:51',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_users'),
+(50,	'gaetan.cottrez',	'2014-07-29 19:18:51',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(51,	'gaetan.cottrez',	'2014-07-29 19:18:51',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_users'),
+(52,	'gaetan.cottrez',	'2014-07-29 19:18:51',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_users'),
+(53,	'gaetan.cottrez',	'2014-07-29 19:18:52',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(54,	'gaetan.cottrez',	'2014-07-29 19:23:49',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_users'),
+(55,	'gaetan.cottrez',	'2014-07-29 19:23:49',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(56,	'gaetan.cottrez',	'2014-07-29 19:23:49',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_users'),
+(57,	'gaetan.cottrez',	'2014-07-29 19:23:50',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_users'),
+(58,	'gaetan.cottrez',	'2014-07-29 19:23:50',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(59,	'gaetan.cottrez',	'2014-07-29 19:23:55',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_users'),
+(60,	'gaetan.cottrez',	'2014-07-29 19:23:56',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles'),
+(61,	'gaetan.cottrez',	'2014-07-29 19:24:37',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_users'),
+(62,	'gaetan.cottrez',	'2014-07-29 19:24:37',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	'no_access',	'',	'menu_roles');
 
 DROP TABLE IF EXISTS `gesauth_perms`;
 CREATE TABLE `gesauth_perms` (
@@ -502,7 +559,7 @@ INSERT INTO `gesauth_perm_to_role` (`perm_id`, `role_id`) VALUES
 
 DROP TABLE IF EXISTS `gesauth_roles`;
 CREATE TABLE `gesauth_roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` smallint(3) NOT NULL AUTO_INCREMENT,
   `name` text,
   `CreatedBy` varchar(50) NOT NULL,
   `CreatedDate` timestamp NULL DEFAULT NULL,
@@ -527,7 +584,8 @@ CREATE TABLE `gesauth_sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `gesauth_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('0dca8c1d7c63422e4433a5e12002e1c7',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36',	1406146994,	'a:11:{s:9:\"user_data\";s:0:\"\";s:18:\"last_login_attempt\";i:1406146652;s:16:\"user_agent_close\";i:0;s:7:\"user_id\";s:14:\"gaetan.cottrez\";s:9:\"user_name\";s:7:\"Cottrez\";s:14:\"user_firstname\";s:7:\"Gaëtan\";s:10:\"user_email\";s:39:\"gaetan.cottrez@laviedunwebdeveloper.com\";s:13:\"user_language\";s:6:\"french\";s:15:\"user_last_login\";s:19:\"2014-07-07 11:02:47\";s:13:\"user_loggedin\";b:1;s:10:\"user_roles\";a:1:{i:0;a:2:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:5:\"Admin\";}}}');
+('f16e3831e23858d778b983986977f988',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36',	1414877411,	'a:12:{s:9:\"user_data\";s:0:\"\";s:18:\"last_login_attempt\";i:1414876698;s:16:\"user_agent_close\";i:0;s:7:\"user_id\";s:14:\"gaetan.cottrez\";s:9:\"user_name\";s:7:\"Cottrez\";s:14:\"user_firstname\";s:7:\"Gaëtan\";s:10:\"user_email\";s:39:\"gaetan.cottrez@laviedunwebdeveloper.com\";s:13:\"user_language\";s:6:\"french\";s:15:\"user_last_login\";s:19:\"2014-08-05 08:42:52\";s:13:\"user_loggedin\";b:1;s:10:\"user_roles\";a:2:{i:0;a:2:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:5:\"Admin\";}i:1;a:2:{s:2:\"id\";s:1:\"3\";s:4:\"name\";s:7:\"Default\";}}s:21:\"user_last_url_visited\";s:30:\"http://localhost/GesAuth/users\";}'),
+('fe22b82a5652c006e766424f108c731f',	'127.0.0.1',	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36',	1414873840,	'a:3:{s:9:\"user_data\";s:0:\"\";s:18:\"last_login_attempt\";i:1414873840;s:16:\"user_agent_close\";i:0;}');
 
 DROP TABLE IF EXISTS `gesauth_users`;
 CREATE TABLE `gesauth_users` (
@@ -549,18 +607,21 @@ CREATE TABLE `gesauth_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `gesauth_users` (`id`, `email`, `password`, `name`, `firstname`, `disabled`, `last_login`, `last_activity`, `last_login_attempt`, `forgot_exp`, `remember_time`, `remember_exp`, `language`) VALUES
-('gaetan.cottrez',	'gaetan.cottrez@laviedunwebdeveloper.com',	'0ef51ee05d9f051599650acbe46cce8afda3d2ec',	'Cottrez',	'Gaëtan',	0,	'2014-07-23 22:17:46',	'2014-07-23 22:23:59',	'2014-07-02 23:16:29',	NULL,	'2014-05-02 00:00:00',	'2PFp2hAHruXmWQiH',	1),
-('john.doe',	'john.doe@laviedunwebdeveloper.com',	'0ef51ee05d9f051599650acbe46cce8afda3d2ec',	'Doe',	'John',	0,	'2014-07-23 22:17:18',	'2014-07-23 22:17:32',	NULL,	NULL,	NULL,	NULL,	2);
+('gaetan.cottrez',	'gaetan.cottrez@laviedunwebdeveloper.com',	'0ef51ee05d9f051599650acbe46cce8afda3d2ec',	'Cottrez',	'Gaëtan',	0,	'2014-11-01 22:18:32',	'2014-11-01 22:30:11',	'2014-07-02 23:16:29',	NULL,	'2014-05-02 00:00:00',	'2PFp2hAHruXmWQiH',	1),
+('john.doe',	'john.doe@laviedunwebdeveloper.com',	'0ef51ee05d9f051599650acbe46cce8afda3d2ec',	'Doe',	'John',	0,	'2014-07-28 13:48:08',	'2014-07-28 15:40:12',	NULL,	NULL,	NULL,	NULL,	2),
+('john.doee',	'centsur@gmail.com',	'0ef51ee05d9f051599650acbe46cce8afda3d2ec',	'Doee',	'John',	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1);
 
 DROP TABLE IF EXISTS `gesauth_user_to_role`;
 CREATE TABLE `gesauth_user_to_role` (
   `user_id` varchar(50) NOT NULL,
-  `role_id` int(11) NOT NULL DEFAULT '0',
+  `role_id` smallint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `gesauth_user_to_role` (`user_id`, `role_id`) VALUES
 ('gaetan.cottrez',	1),
-('john.doe',	3);
+('gaetan.cottrez',	3),
+('john.doe',	3),
+('john.doee',	1);
 
--- 2014-07-23 20:24:38
+-- 2014-11-05 09:40:58

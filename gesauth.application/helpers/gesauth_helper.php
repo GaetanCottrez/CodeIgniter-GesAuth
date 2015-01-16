@@ -125,33 +125,33 @@ if ( ! function_exists('ConvertDateFormatFrToEn'))
 	}
 }
 /**
-  * Fonction permettant de convertir un nombre MySQL en un nombre format� WebGes
+  * Fonction permettant de convertir un nombre MySQL en un nombre format� GesAuth
   *
   * @access public
   * @property string $number
   * @param string $number contient le nombre MySQL
-  * @return string au format nombre WebGes
+  * @return string au format nombre GesAuth
   */
 
-if ( ! function_exists('ConvertNumberMySQLForWebGes'))
+if ( ! function_exists('ConvertNumberMySQLForGesAuth'))
 {
-	function ConvertNumberMySQLForWebGes($number=0,$decimal=2){
+	function ConvertNumberMySQLForGesAuth($number=0,$decimal=2){
 		if($number == '' || $number == NULL) $number = 0;
 		return number_format($number,$decimal,',','.');
 	}
 }
 /**
-   * Fonction permettant de convertir un nombre format� WebGes en un nombre MySQL
+   * Fonction permettant de convertir un nombre format� GesAuth en un nombre MySQL
   *
   * @access public
   * @property string $number
-  * @param string $number contient le nombre WebGes
+  * @param string $number contient le nombre GesAuth
   * @return string au format nombre MySQL
   */
 
-if ( ! function_exists('ConvertNumberWebGesForMySQL'))
+if ( ! function_exists('ConvertNumberGesAuthForMySQL'))
 {
-	function ConvertNumberWebGesForMySQL($number){
+	function ConvertNumberGesAuthForMySQL($number){
 		return str_replace(',','.',str_replace('.','',myaddslashes(trimUltime($number))));
 	}
 }
@@ -187,9 +187,9 @@ if ( ! function_exists('ConvertDateSearchForMySQL'))
   * @return string $date au format anglais
   */
 
-if ( ! function_exists('ConvertDateMySQLToWebGes'))
+if ( ! function_exists('ConvertDateMySQLToGesAuth'))
 {
-	function ConvertDateMySQLToWebGes($date,$param='d/m/Y'){
+	function ConvertDateMySQLToGesAuth($date,$param='d/m/Y'){
 		if($date != "" && $date != NULL) return date($param, strtotime($date));
 	}
 }
@@ -220,21 +220,6 @@ if ( ! function_exists('ConvertYesOrNoSearchForMySQL'))
 
 		}
 		return $Bool;
-	}
-}
-/**
-  * Fonction permettant de nettoyer une recherche universelle qui provient d'une liste
-  *
-  * @access public
-  * @property string $search
-  * @param string $search contient la recherche utilisateur
-  * @return string $search_clean contient la recherche nettoy�e
-  */
-
-if ( ! function_exists('CleanSearchListWebGes'))
-{
-	function CleanSearchListWebGes($search){
-		return trimUltime(myaddslashes(str_replace('"',"",$search)));
 	}
 }
 
@@ -317,5 +302,5 @@ if ( ! function_exists('GetLanguageVistor'))
 	}
 
 }
-/* End of file webges_helper.php */
-/* Location: ./application/helpers/webges_helper.php */
+/* End of file gesauth_helper.php */
+/* Location: ./application/helpers/gesauth_helper.php */

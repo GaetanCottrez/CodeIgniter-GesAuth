@@ -16,11 +16,13 @@
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 
-class Login extends CI_Controller {
+include APPPATH.'controllers/Tools_template.php';
+class Login extends Tools_template {
 
 	private $title="";
 	private $name_class="login";
 	private $var = array();
+	private $config_vars = array();
 	private $language = '';
 	public function __construct()
 	{
@@ -28,6 +30,8 @@ class Login extends CI_Controller {
 		parent::__construct();
 
 		//Set du titre
+		$this->CI =& get_instance();
+		$this->config_vars = & $this->CI->config->item('gesauth');
 		$this->language = GetLanguageVistor($this->input->server('HTTP_ACCEPT_LANGUAGE'));
 		$this->lang->load($this->name_class,$this->language);
 		$this->title = $this->lang->line('welcome_title');
@@ -109,9 +113,10 @@ class Login extends CI_Controller {
 
 					$this->var['javascript'] .= "$('#login').addClass('has-success');";
 					$this->var['javascript'] .= "$('#password').addClass('has-success');";
-
-					$this->var['javascript'] .=javascript_code_redirect(site_url(), 'top', 2000);
-
+					if($this->CI->session->userdata($this->config_vars['prefix_session'].'last_url_visited'))
+						$this->var['javascript'] .=javascript_code_redirect($this->CI->session->userdata($this->config_vars['prefix_session'].'last_url_visited'), 'top', 2000);
+					else
+						$this->var['javascript'] .=javascript_code_redirect(site_url(), 'top', 2000);
 				}else{
 		        	$this->var['output'] = $this->gesauth->get_errors();
 		       		$this->var['class'] = "alert alert-danger alert-dismissable";

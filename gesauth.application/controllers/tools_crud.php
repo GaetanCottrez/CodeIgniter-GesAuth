@@ -16,7 +16,9 @@
  *
  */
 
- class Tools_crud extends CI_Controller {
+//include APPPATH.'ressources/ssp.php';
+include APPPATH.'controllers/tools_template.php';
+class Tools_crud extends Tools_template {
 	protected $table;
 	protected $config_vars;
 	protected $theme;
@@ -42,6 +44,7 @@
 	/*
 	|===============================================================================
 	| Méthode commune pour tous les crud
+	|	. ajax_server_side_list
 	|	. _apply_js
 	|	. _fake_callback
 	|	. _enjoy
@@ -51,6 +54,52 @@
 	|	. _just_display_value_callback
 	|===============================================================================
 	*/
+	/*function ajax_server_side_list(){
+		/*
+		 * DataTables example server-side processing script.
+		*
+		* Please note that this script is intentionally extremely simply to show how
+		* server-side processing can be implemented, and probably shouldn't be used as
+		* the basis for a large complex system. It is suitable for simple use cases as
+		* for learning.
+		*
+		* See http://datatables.net/usage/server-side for full details on the server-
+		* side processing requirements of DataTables.
+		*
+		* @license MIT - http://datatables.net/license_mit
+		*/
+
+		// Table's primary key
+		/*$primaryKey = 'id';
+
+		// Array of database columns which should be read and sent back to DataTables.
+		// The `db` parameter represents the column name in the database, while the `dt`
+		// parameter represents the DataTables column identifier. In this case simple
+		// indexes
+		$columns = array();
+		foreach ($this->array_columns as $key){
+			$columns[] = array( 'db' => $key, 'dt' => $key );
+		}
+
+		// SQL server connection information
+		$sql_details = array(
+				'user' => $this->db->username,
+				'pass' => $this->db->password,
+				'db'   => $this->db->database,
+				'host' => $this->db->hostname
+		);
+
+
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 * If you just want to use the basic configuration for DataTables with PHP
+		* server-side, there is no need to edit below this line.
+		*/
+		/*log_message('info','ajax_server_side_list');
+		echo str_replace("'"," ",json_encode(
+				SSP::simple( $_POST, $sql_details, $this->table, $primaryKey, $columns ))
+		);
+	}*/
+
 	function _apply_js($js=null){
 		$action = $this->uri->segment(3);
 		if($action == null) $action='list';
@@ -60,6 +109,14 @@
 
 	function _fake_callback(){
 
+	}
+
+	function _method_created_callback($value = null, $primary_key){
+		return '<input id="field-method_created" name="method_created" type="hidden" value="CRUD_ADD">';
+	}
+
+ 	function _method_modified_callback($value = null, $primary_key){
+		return '<input id="field-method_modified" name="method_modified" type="hidden" value="CRUD_EDIT">';
 	}
 
  	function _createdby_callback($value = null, $primary_key){
@@ -170,16 +227,15 @@
 	function _encrypt_password_callback($post_array= array(), $primary_key= null) {
 		$this->config->load('gesauth');
 		$config_vars = & $this->config->item('gesauth');
-		log_message('info', $post_array['password']);
-		log_message('info', $post_array['verify_password']);
-
 		//Encrypt password only if is not empty. Else don't change the password to an empty field
 			if(!empty($post_array['password']) && !empty($post_array['verify_password']) && ($post_array['password'] == $post_array['verify_password']))
 			{
+				if(isset($post_array['password_display'])){
+					$post_array['password_display'] = $this->encrypt->encode($post_array['password']);
+				}
 				$key = $config_vars['gesauth_salt'];
 				$post_array['password'] = sha1($key.$post_array['password']);
-				log_message('info', $post_array['password']);
-			    unset($post_array['verify_password']);
+				unset($post_array['verify_password']);
 			}
 			else
 			{
@@ -249,7 +305,7 @@
 			$query = $this->db->where('id', $str)->get(PREFIX.$table);
 			if ($query->num_rows() >= 1)
 			{
-				$this->form_validation->set_message('check_unique_user', $this->lang->line('tools_not_unique'));
+				$this->form_validation->set_message('_check_unique_user', $this->lang->line('tools_not_unique'));
 				return FALSE;
 			}
 			else
@@ -260,6 +316,23 @@
 		}else{
 			return TRUE;
 		}
+	}
+
+	function _check_unique_name($str){
+		$action = $this->uri->segment(3);
+		$id = $this->uri->segment(4);
+		$table = $this->uri->segment(1);
+
+		if($id != '') $this->db->where('id !=', $id);
+		$query = $this->db->where('name', $str)->get(PREFIX.$table);
+		if ($query->num_rows() >= 1){
+			$this->form_validation->set_message('_check_unique_name', $this->lang->line('tools_not_unique'));
+			return FALSE;
+		}
+		else{
+			return TRUE;
+		}
+
 	}
 
 	function _check_unique_email($str){
@@ -278,10 +351,9 @@
 		{
 			$table = $this->uri->segment(1);
 			$query = $this->db->where('email', $str)->get(PREFIX.$table);
-			log_message('info', $query->num_rows);
 			if ($query->num_rows() >= 1)
 			{
-				$this->form_validation->set_message('check_unique_email', $this->lang->line('tools_not_unique'));
+				$this->form_validation->set_message('_check_unique_email', $this->lang->line('tools_not_unique'));
 				return FALSE;
 			}
 			else

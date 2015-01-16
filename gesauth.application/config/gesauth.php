@@ -56,6 +56,10 @@ $config['gesauth'] = array(
 	'clean_session_user_agent_close' =>  true,
 	// gesauth time to clean all user session agent close
 	'time_to_clean_session_user_agent_close' =>  300,
+	// gesauth clean all user session expired
+	'clean_session_for_expiration' =>  true,
+	// gesauth time to clean all user session expired
+	'time_to_clean_session_for_expiration' =>  28800,
 	// register logs authentification in the database
     'active_logs_authentification' => true,
 	// register logs perms in the database

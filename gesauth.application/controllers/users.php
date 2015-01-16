@@ -22,6 +22,15 @@ class Users extends Tools_crud {
 	protected $config_vars;
     protected $theme='flexigrid';
 	protected $name_class="users";
+	protected $array_columns;
+	protected $add_fields;
+	protected $edit_fields;
+	protected $required_fields;
+	protected $control_menu="menu_users";
+	protected $control_create="create_user";
+	protected $control_modify="modify_user";
+	protected $control_delete="delete_user";
+	protected $js = 'users/user';
 	protected $title="";
 
 	function __construct()
@@ -35,19 +44,24 @@ class Users extends Tools_crud {
 		 $this->title = $this->lang->line('user_title');
 
 		 $this->load->model('Users_model');
+		 
+		 $this->array_columns = array('id', 'email', 'name', 'firstname', 'disabled', 'last_login', 'last_activity', 'language');
+		 $this->add_fields = array('begin_fieldset_identify', 'id', 'name', 'firstname', 'password','verify_password', 'email', 'language', 'end_fieldset_identify');
+		 $this->edit_fields = array('begin_fieldset_identify','id', 'name', 'firstname', 'password','verify_password', 'email', 'disabled', 'language', 'end_fieldset_identify', 'begin_fieldset_roles', 'roles', 'end_fieldset_roles');
+		 $this->required_fields = array('email', 'name', 'firstname', 'password', 'verify_password','language', 'roles');
 
 	}
 
 	public function index()
 	{
 		 if($this->gesauth->control('menu_users') == true){
-			$this->list_users();
+			$this->list_crud();
 		 }else{
 		 	redirect(site_url());
 		 }
 	}
 
-	public function list_users()
+	public function list_crud()
 	{
 		// List languages
 		$jeditable_language = '';
@@ -66,10 +80,9 @@ class Users extends Tools_crud {
 		$fields = array();
 		$relation = 'LEFT JOIN (SELECT user_id, COUNT(user_id) AS NbUse FROM `'.PREFIX.'user_to_role` GROUP BY 1) jb80bb774 ON `jb80bb774`.`user_id` = `'.PREFIX.'users`.`id`';
 		$fields[] = 'jb80bb774.NbUse';
-		$array_columns = array('id', 'email', 'name', 'firstname', 'disabled', 'last_login', 'last_activity', 'language');
 		// GESAUTH CONTROL
 		// MODIFY
-		if($this->gesauth->control('modify_user') == true){
+		if($this->gesauth->control($this->control_modify) == true){
 			$jeditable = "!".$this->table.";email;email;text;unique|".$this->table.";name;name;text|".$this->table.";firstname;firstname;text|".$this->table.";disabled;disabled;select;".$jeditable_disabled."|".$this->table.";language;s8512ae7d;select;".$jeditable_language."!";
 		}else{
 			$jeditable = '!|!';
@@ -82,7 +95,7 @@ class Users extends Tools_crud {
 							 ->unset_read()
 		 					 ->set_table($this->table)
 							 ->set_subject($this->lang->line('user_user'))
-							 ->columns($array_columns)
+							 ->columns($this->array_columns)
 							  // DISPLAY AS
 							 ->display_as('id',$this->lang->line('user_login'))
 							 ->display_as('roles',$this->lang->line('user_roles'))
@@ -102,11 +115,11 @@ class Users extends Tools_crud {
 		 					 ->display_as('begin_fieldset_roles',$this->lang->line('tools_fieldset_internal_organisation'))
 		 					 ->display_as('end_fieldset_roles','')
 		 					 // FIELDS
-		 					 ->add_fields('begin_fieldset_identify', 'id', 'name', 'firstname', 'password','verify_password', 'email', 'language', 'end_fieldset_identify', 'begin_fieldset_roles', 'roles', 'end_fieldset_roles')
+		 					 ->add_fields($this->add_fields)
 		 					 // EDIT FIELDS
-		 					 ->edit_fields('begin_fieldset_identify','id', 'name', 'firstname', 'password','verify_password', 'email', 'disabled', 'language', 'end_fieldset_identify', 'begin_fieldset_roles', 'roles', 'end_fieldset_roles')
+		 					 ->edit_fields($this->edit_fields)
 		 					 // REQUIRED FIELDS
-		 					 ->required_fields('email', 'name', 'firstname', 'password', 'verify_password','language', 'roles')
+		 					 ->required_fields($this->required_fields)
 		 					 // CHANGE FIELD TYPE
 		 					 ->change_field_type('email', 'alpha_numeric')
 							 ->change_field_type('name', 'alpha_numeric')
@@ -126,11 +139,13 @@ class Users extends Tools_crud {
 							 ->set_rules('verify_password_edit', $this->lang->line('user_password_confirm'), 'trim|xss_clean')
 							 ->set_rules('email', $this->lang->line('user_email'), 'trim|required|valid_email|callback__check_unique_email|xss_clean')
 							 // SET RELATION
-							 ->set_relation('language',PREFIX.'languages','Name')
-							 ->set_relation_n_n('roles', PREFIX.'user_to_role', PREFIX.'roles', 'user_id', 'role_id', 'name')
-							 //->set_relation('id',PREFIX.'user_to_role','user_id')
+							 ->set_relation('language',PREFIX.'languages','Name');
+		$action = $this->uri->segment(3);
+		if($action == 'edit' || $action == 'update_validation' || $action == 'update'){
+		  $this->grocery_crud->set_relation_n_n('roles', PREFIX.'user_to_role', PREFIX.'roles', 'user_id', 'role_id', 'name');
+		}					 //->set_relation('id',PREFIX.'user_to_role','user_id')
 							 // CALLBACK ADD FIELD
-							 ->callback_add_field('password',array($this,'_set_password_input_to_empty'))
+		  $this->grocery_crud->callback_add_field('password',array($this,'_set_password_input_to_empty'))
  							 ->callback_add_field('verify_password',array($this,'_set_verify_password_input_to_empty'))
  							 ->callback_add_field('begin_fieldset_identify',array($this,'_fake_callback'))
  							 ->callback_add_field('end_fieldset_identify',array($this,'_fake_callback'))
@@ -154,22 +169,22 @@ class Users extends Tools_crud {
 							 ->add_action('JeditableButton', '', $jeditable, 'jeditable_action');
 							 // GESAUTH CONTROL
 							 // ADD
-							 if($this->gesauth->control('create_user') == false){
+							 if($this->gesauth->control($this->control_create) == false){
 							 	$this->grocery_crud->unset_add();
 							 }
 							 // MODIFY
-							 if($this->gesauth->control('modify_user') == false){
+							 if($this->gesauth->control($this->control_modify) == false){
 							  	$this->grocery_crud->unset_edit();
 							 }
 							 // DELETE
-							 if($this->gesauth->control('delete_user') == false){
+							 if($this->gesauth->control($this->control_delete) == false){
 							  	$this->grocery_crud->unset_delete();
 							 }
 							 // SET CUSTOM RELATION
 			$this->grocery_crud->basic_model->set_custom_relation($relation,$fields);
 
 		 $output = $this->grocery_crud->render();
-		 $js['js'][] = 'users/user';
+		 $js['js'][] = $this->js;
 		 $this->_enjoy($this->view,$output,$js);
 	}
 

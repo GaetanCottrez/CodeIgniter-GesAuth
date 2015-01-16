@@ -16,14 +16,14 @@ class MY_Profiler extends CI_Profiler
 			//	Le contenu de la session
 			$output .= "\n\n<table cellpadding='4' cellspacing='1' border='0' width='100%'>\n";
 				
-			//	Nous devons exécuter cette fonction pour récupérer un tableau de valeurs
-			//	En effet, pour accéder aux données de la session, il faut récupérer ses attributs
+			//	Nous devons exï¿½cuter cette fonction pour rï¿½cupï¿½rer un tableau de valeurs
+			//	En effet, pour accï¿½der aux donnï¿½es de la session, il faut rï¿½cupï¿½rer ses attributs
 			$sess = get_object_vars($this->CI->session);
 
 			//	Nous parcourons chaque valeur du tableau de sessions
 			foreach($sess['userdata'] as $key => $val)
 			{
-				//	On échappe (juste pour l'affichage) les données non numériques et on les affiche
+				//	On ï¿½chappe (juste pour l'affichage) les donnï¿½es non numï¿½riques et on les affiche
 				if( ! is_numeric($key))
 				{
 					$key = "'" . $key . "'";
@@ -31,7 +31,7 @@ class MY_Profiler extends CI_Profiler
 				$output .= "<tr><td width='50%' style='color:#000;
 	background-color:#ddd;'>&#36;_SESSION[" . $key . "]&nbsp;&nbsp; </td><td width='50%' style='color:#009999;font-weight:normal;background-color:#ddd;'>";
 
-				//	On affiche la valeur de la variable. Si c'est un tableau, on exécute la fonction print_r
+				//	On affiche la valeur de la variable. Si c'est un tableau, on exï¿½cute la fonction print_r
 				if(is_array($val))
 				{
 					$output .= "<pre>" . htmlspecialchars(stripslashes(print_r($val, true))) . "</pre>";
@@ -48,7 +48,7 @@ class MY_Profiler extends CI_Profiler
 		}
 		else
 		{
-			//	La session est indéfinie
+			//	La session est indï¿½finie
 			$output .= "<div style='color:#009999;font-weight:normal;padding:4px 0 4px 0'>".'No SESSION data exists'."</div>";
 		}
 
@@ -64,7 +64,7 @@ class MY_Profiler extends CI_Profiler
 		$output .= '<legend style="color:#900;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_versions').'&nbsp;&nbsp;</legend>';
 		$output .= "\n";
 
-		//	La session est indéfinie
+		//	La session est indï¿½finie
 		$output .= "<div style='color:#009999;font-weight:normal;padding:4px 0 4px 0'>".VERSION."</div>";
 		
 		return $output . "</fieldset>";

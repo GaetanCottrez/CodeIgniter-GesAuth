@@ -24,6 +24,7 @@ $lang['gesauth_disconnect_by_other_user'] ="You have been disconnected because a
 $lang['gesauth_wrong'] ='User or Password is wrong.';
 $lang['gesauth_exceeded'] ='Login try limit exceeded.';
 $lang['gesauth_disabled'] ="Disabled user.";
+$lang['gesauth_session_expired'] ="Your session has expired due to inactivity";
 
 // ldap
 $lang['gesauth_no_etablish_connection_ldap'] ="The connection to the server could not be established, please try again later.";

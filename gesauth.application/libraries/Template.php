@@ -41,18 +41,6 @@ class Template {
 		$this->var['css'] = array();
 		$this->var['js'] = array();
 
-		// Initialisation des fichiers CSS
-		$this->add_file_css('bootstrap.min');
-		$this->add_file_css('bootstrap-theme.min');
-		$this->add_file_css('normalize');
-		$this->add_file_css('styles');
-		$this->add_file_css('menu-css3');
-
-		// Initialisation des fichiers JS
-		$this->add_file_js('jquery-2.1.0.min');
-		$this->add_file_js('bootstrap.min');
-		$this->add_file_js('gesauth');
-
 		// Check que l'utilisateur est bien connecté
 		$this->is_loggedin();
 	}

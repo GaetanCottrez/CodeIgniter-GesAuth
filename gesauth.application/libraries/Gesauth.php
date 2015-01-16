@@ -5,14 +5,14 @@
  *
  * A Codeigniter library authentification based on Aauth.
  *
- * Copyright (C) 2014 Gaëtan Cottrez.
+ * Copyright (C) 2014-2015 Gaëtan Cottrez.
  *
  *
  * @package    	GesAuth
- * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
+ * @copyright  	Copyright (c) 2014-2015, Gaëtan Cottrez
  * @license 	GNU GENERAL PUBLIC LICENSE
  * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
- * @version    	1.1
+ * @version    	1.1.1
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 
@@ -31,6 +31,7 @@ class Gesauth {
     private $ldap_connect;
     private $ldap_temporarily_unavailable = false;
     public $array_gesauth_mode = array();
+    private $is_loggedin = false;
     public function __construct() {
     	// delete all errors at first :)
         $this->errors = array();
@@ -64,10 +65,12 @@ class Gesauth {
         // Get Session
         $this->session = $this->CI->session;
 
-		// Clean session close browser
+        // Clean session close browser
         $this->clean_session_user_agent_close();
+		 // Clean session with activity expired
+        $this->clean_session_for_expiration();
 
-        // this user data is used for security DDOS
+       // this user data is used for security DDOS
         if( ! $this->session->userdata('last_login_attempt') ){
         	$this->session->set_userdata('last_login_attempt', $this->session->userdata('last_activity'));
         }
@@ -146,7 +149,7 @@ class Gesauth {
     		$this->ldap_connect = ldap_connect ( $this->config_vars['LDAP_DC'], $this->config_vars['LDAP_PORT_DC'] );
 			if (!$this->ldap_connect) {
     			$this->ldap_temporarily_unavailable = true;
-    			$this->gesauth_logs_message('gesauth ldap info', sprintf($this->CI->lang->line('gesauth_unable_to_connect_server_ldap'), $this->config_vars['LDAP_DC']));
+    			$this->gesauth_logs_message('ERROR', 'gesauth ldap info : '.sprintf($this->CI->lang->line('gesauth_unable_to_connect_server_ldap'), $this->config_vars['LDAP_DC']));
     		}
 
 			// if you use OpenLDAP_2.x.x, test etablish connection with a valid account for verify available LDAP
@@ -154,7 +157,7 @@ class Gesauth {
 				$bind = @ldap_bind ( $this->ldap_connect, $this->config_vars['LDAP_AD_USER'], $this->config_vars['LDAP_AD_USER_PASSWORD'] );
 				if (! $bind) {
 					$this->ldap_temporarily_unavailable = true;
-					$this->gesauth_logs_message('gesauth ldap info', sprintf($this->CI->lang->line('gesauth_unable_to_connect_server_ldap'), $this->config_vars['LDAP_DC']));
+					$this->gesauth_logs_message('ERROR', 'gesauth ldap info : '.sprintf($this->CI->lang->line('gesauth_unable_to_connect_server_ldap'), $this->config_vars['LDAP_DC']));
 				}
 			}
 		}
@@ -188,6 +191,28 @@ class Gesauth {
     }
 
     /**
+	 *	clean all session close user agent
+	 *
+	 *	@access private
+	 */
+
+	private function clean_session_for_expiration(){
+    	if ($this->config_vars['clean_session_for_expiration'] == false)
+    	{
+    		return;
+    	}
+    	// fix clean expiration session user load this treatment
+    	if($this->session->userdata('last_activity') +$this->config_vars['time_to_clean_session_for_expiration'] < time()){
+    		$this->new_session('gesauth_session_expired');
+    	}
+    	$timestamp = time() - $this->config_vars['time_to_clean_session_for_expiration'];
+    	$error_message['errors_gesauth'][] = $this->CI->lang->line('gesauth_session_expired');
+    	$data['user_data'] = serialize($error_message);
+    	$this->gesauth_model->clean_session_for_expiration($timestamp, $data);
+
+    }
+
+    /**
 	 *	check extension loaded in the server
 	 *
 	 *	@access private
@@ -195,7 +220,7 @@ class Gesauth {
 
 	private function extension_ldap_loaded(){
     	if (!extension_loaded('ldap')){
-    		$this->gesauth_logs_message('gesauth ldap error', $this->CI->lang->line('gesauth_ldap_not_support'));
+    		$this->gesauth_logs_message('ERROR', 'gesauth ldap error : '.$this->CI->lang->line('gesauth_ldap_not_support'));
     		echo $this->CI->lang->line('gesauth_ldap_not_support');
     		die();
     	}
@@ -303,7 +328,31 @@ class Gesauth {
     	return $login;
     }
 
-    /**
+     /**
+	 *	encode array
+	 *
+	 *	@access public
+	 *	@param array $array array to encode
+	 *	@return array
+	 */
+
+	private function encode_array($array){
+		foreach($array as $key => $value)
+		{
+			if(is_array($value))
+			{
+				$array[$key] = $this->encode_array($value);
+			}
+			else
+			{
+				$array[$key] = iconv("ISO-8859-1",$this->CI->config->item('charset'),$value);
+			}
+		}
+
+		return $array;
+	}
+
+	/**
 	 *	login ldap the user
 	 *
 	 *	@access private
@@ -312,7 +361,7 @@ class Gesauth {
 	 *	@param bool $remember is the remember user
 	 *	@return bool
 	 */
-
+	 
 	private function login_ldap($id, $pass, $remember = FALSE){
 
 		$this->etablish_connection_ldap();
@@ -347,13 +396,15 @@ class Gesauth {
 
 		//start the search ldap
 		$search = ldap_search ( $this->ldap_connect, $this->config_vars['LDAP_AD_OU'], $filter, $justthese );
-
 		// get value user
 		$res = ldap_get_entries ( $this->ldap_connect, $search );
 		if ($res ["count"] != 1) {
 			$this->error($this->CI->lang->line('gesauth_no_result_to_search_ldap'));
 			return false;
+		}else{
+			$res = $this->encode_array($res);
 		}
+		
 
 		/*
 		 * Normal Day to Day Values:
@@ -409,7 +460,6 @@ class Gesauth {
 		$query = null;
 		$query = $this->gesauth_model->get_user($id);
 		$row = $query->row();
-
 		if ($query->num_rows() > 0) {
 
 			$data = array(
@@ -417,14 +467,13 @@ class Gesauth {
 					$this->config_vars['prefix_session'].'name' => $res[0]["sn"][0],
 					$this->config_vars['prefix_session'].'firstname' => $res[0]["givenname"][0],
 					$this->config_vars['prefix_session'].'email' => $res[0]["mail"][0],
-					$this->config_vars['prefix_session'].'language' => $row->language,
+					$this->config_vars['prefix_session'].'language' => $row->value_language,
 					$this->config_vars['prefix_session'].'last_login' => $row->last_login,
 					//$this->config_vars['prefix_session'].'title' => $res[0]["title"][0],
 					//this->config_vars['prefix_session'].'phone' => $res[0]["telephonenumber"][0],
 					//$this->config_vars['prefix_session'].'mobile' => $res[0]["mobile"][0],
 					$this->config_vars['prefix_session'].'loggedin' => TRUE
 			);
-
 			$this->session->set_userdata($data);
 			// id remember selected
 			if ($remember){
@@ -686,17 +735,18 @@ class Gesauth {
 	 */
 
 	public function is_loggedin() {
-
-    	// Is there a corresponding session in the DB?
+		if($this->is_loggedin){
+			return true;
+		}
+		// Is there a corresponding session in the DB?
     	$query = $this->gesauth_model->get_session_in_db();
 
     	$row = $query->row();
     	// Does the IP Match?
 		if ($this->config_vars['match_ip'] == TRUE && ($row->ip_address != $this->CI->input->ip_address()))
 		{
-			$this->session->sess_destroy();
-			$this->session->sess_create();
-			$this->error($this->CI->lang->line('gesauth_ip_address_change'));
+			$this->new_session('gesauth_ip_address_change');
+
 			return false;
 		}
 
@@ -704,15 +754,17 @@ class Gesauth {
 		if($this->session->userdata($this->config_vars['prefix_session'].'agent_close') == 1){
         	$this->close_browser();
         }
-
         if($this->session->userdata($this->config_vars['prefix_session'].'loggedin')){
         	// update activity session
         	$this->update_activity();
         	// unset the userdata errors_gesauth
         	$this->session->unset_userdata('errors_gesauth');
+        	// save url visited
+        	$this->session->set_userdata($this->config_vars['prefix_session'].'last_url_visited', current_url());
+        	$this->is_loggedin = true;
         	return true;
         } else{
-            if( !array_key_exists('user', $_COOKIE) ){
+        	if( !array_key_exists('user', $_COOKIE) ){
                 return false;
             }else{
                 $cookie = explode('-', $_COOKIE['user']);
@@ -729,7 +781,8 @@ class Gesauth {
 
                         if(strtotime($row->remember_time) > strtotime("now") ){
                             $this->login_fast($cookie[0]);
-                            return true;
+                            $this->is_loggedin = true;
+        					return true;
                         }
                         // if time is expired
                         else {
@@ -743,6 +796,33 @@ class Gesauth {
         return false;
     }
 
+    /**
+     *	create a new session with some user_data
+     *
+     *	@access private
+     *	@param string $perm_par is the perm
+     */
+
+    private function new_session($error_message ='', $last_url_visited = true){
+    	// save userdata last_url_visited
+    	if($last_url_visited){
+    		$set_last_url_visited = $this->session->userdata($this->config_vars['prefix_session'].'last_url_visited');
+    	}
+
+    	// destroy old session and create new session
+    	$this->session->sess_destroy();
+    	$this->session->sess_create();
+
+    	// set last_url_visited if exist
+    	if(isset($set_last_url_visited)){
+    		$this->session->set_userdata($this->config_vars['prefix_session'].'last_url_visited', $set_last_url_visited);
+    	}
+
+    	// set error_message if exist
+    	if($error_message != ''){
+    		$this->error($this->CI->lang->line($error_message));
+    	}
+    }
 
     /**
 	 *	most important function. it controls if a logged or public user has permiision
@@ -766,6 +846,7 @@ class Gesauth {
         				'ip_address' => $this->session->userdata('ip_address'),
         				'user_agent' => $this->session->userdata('user_agent'),
         				'type' => 'no_access',
+        				'url' => current_url(),
         				'informations_log' => $perm_par
         		);
         		$this->gesauth_model->insert_logs_perms($datalog);
@@ -787,6 +868,7 @@ class Gesauth {
         				'ip_address' => $this->session->userdata('ip_address'),
         				'user_agent' => $this->session->userdata('user_agent'),
         				'type' => 'no_access',
+        				'url' => current_url(),
         				'informations_log' => $perm_par
         		);
         		$this->gesauth_model->insert_logs_perms($datalog);
@@ -825,9 +907,8 @@ class Gesauth {
     		);
     		$this->gesauth_model->insert_logs_authentification($datalog);
     	}
-    	$this->session->sess_destroy();
-    	$this->session->sess_create();
 
+    	$this->new_session('gesauth_disconnect');
     }
 
     /**

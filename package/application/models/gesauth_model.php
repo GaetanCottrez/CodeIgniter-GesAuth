@@ -4,14 +4,14 @@
  * Models GesAuth
  *
  *
- * Copyright (C) 2014 Gaëtan Cottrez.
+ * Copyright (C) 2014-2015 Gaëtan Cottrez.
  *
  *
  * @package    	GesAuth
- * @copyright  	Copyright (c) 2014, Gaëtan Cottrez
+ * @copyright  	Copyright (c) 2014-2015, Gaëtan Cottrez
  * @license 	GNU GENERAL PUBLIC LICENSE
  * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
- * @version    	1.1
+ * @version    	1.1.1
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 
@@ -50,8 +50,11 @@ class gesauth_model extends CI_Model
 	 */
 	public function get_user($id)
 	{
-		 return $this->CI->db->where('id', $id)
-         					 ->get($this->config_vars['users']);
+		 return $this->CI->db->select($this->config_vars['users'].'.*, '.$this->config_vars['languages'].'.value AS `value_language`')
+							 ->from($this->config_vars['users'])
+						     ->join($this->config_vars['languages'], $this->config_vars['join_users_languages'])
+						     ->where($this->config_vars['users'].'.id', $id)
+						     ->get();
 	}
 
 	/**
@@ -177,6 +180,20 @@ class gesauth_model extends CI_Model
 		$this->CI->db->where("last_activity < ", $timestamp)
 					 ->like("user_data",'"user_agent_close";i:1')
 					 ->delete($this->CI->session->sess_table_name);
+
+	}
+
+	/**
+	 *	Clean session close browser in databases
+	 *
+	 *	@param array $timestamp is the timestamp for the last_activity
+	 */
+	public function clean_session_for_expiration($timestamp, $data) {
+
+		$this->CI->db->where("last_activity < ", $timestamp)
+					 ->update($this->CI->session->sess_table_name, $data);
+
+	//	echo $this->CI->db->last_query();
 
 	}
 

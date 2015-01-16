@@ -1,0 +1,9 @@
+- optimisation de la method is_loggedin
+
+- enregistrement de l'url lorsqu'on est connecté pour rediriger l'utilisateur sur l'url
+
+- gestion de l'inactivité des sessions et affichage d'un message d'erreur pour les sessions concernées
+
+188105960605031
+
+90022318361

@@ -6,19 +6,50 @@
  *
  */
 
+
+if($('a.custom_general_button').attr('href') != undefined){
+	var custom_general_button = $('a.custom_general_button').attr('href').split('!')[1];
+	var custom_general_button = custom_general_button.split('|');
+}else{
+	var custom_general_button = new Array();
+}
+
+for(i=0;i<custom_general_button.length;i++){
+	tmp = custom_general_button[i].split(';');
+	if(custom_general_button[i] !=''){
+		$( "#custom-general-button" ).after( '<a role="button" class="DTTT_button ui-state-default ui-corner-all" href="'+tmp[0]+'"><span class="ui-button-text">'+tmp[1]+'</span></a>' );
+	}
+}
+
+$( "a" ).remove(":contains('CustomGeneralButton')");
+
+/*
+
+$( "#custom-general-button" ).after( "<p>Test</p>" );
+
+<a role="button" class="DTTT_button add_button ui-state-default ui-corner-all ui-button-text-icon-primary" href="<?php echo $add_url?>">
+	<span class="ui-button-icon-primary ui-icon ui-icon-circle-plus"></span>
+	<span class="ui-button-text"><?php echo $subject?></span>
+</a>
+*/
+
 $('a.control_display_action').each(function( index ) {
   $( "#"+$( this ).attr('href') ).remove();
 });
 
+if($('a.jeditable_action').attr('href') != undefined){
+	var options_jeditable = $('a.jeditable_action').attr('href').split('!')[1];
+	var options_jeditable = options_jeditable.split('|');
+}else{
+	var options_jeditable = new Array();
+}
+
 $( "a" ).remove(":contains('ControlDisplayButton')");
 
-var options_jeditable = $('a.jeditable_action').attr('href').split('!')[1];
 
 $( "a" ).remove(":contains('JeditableButton')");
 
 $( "th.ui-state-default" ).remove(":contains('JeditableButton')");
-
-var options_jeditable = options_jeditable.split('|');
 
 $(document).ready(function() {
 	/* Init DataTables */
@@ -79,6 +110,26 @@ $(document).ready(function() {
 
 	// Rewrite columns lines for numeric order asc by click to th
 	$( "th.ui-state-default" ).click(function() {
+		var lines = $( "td[name='lines']" );
+		var y = 1;
+		for(i=0;i<lines.length;i++){
+			lines[i].innerHTML = y;
+			y++;
+		}
+	});
+
+	// Rewrite columns lines for numeric order asc by click to th
+	$( "input" ).keyup(function() {
+		var lines = $( "td[name='lines']" );
+		var y = 1;
+		for(i=0;i<lines.length;i++){
+			lines[i].innerHTML = y;
+			y++;
+		}
+	});
+
+	// Rewrite columns lines for numeric order asc by click to th
+	$( "div.dataTablesContainer" ).click(function() {
 		var lines = $( "td[name='lines']" );
 		var y = 1;
 		for(i=0;i<lines.length;i++){
