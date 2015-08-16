@@ -19,10 +19,30 @@
 class Custom_query_crud_model extends grocery_CRUD_model
 {
 	private $custom_field = array();
+	private $save_for_search_ajax = array();
+	private $save_qb_join = array();
+	private  $query_str = ''; 
+
 	function __construct() {
 		parent::__construct();
 	}
 
+	/**
+	 *	hack to set the default query string from GroceryCrud
+	 */
+ 
+	public function set_query_str($query_str) {
+		$this->query_str = $query_str;
+	}
+	/* ---------------------------------------------------------- */
+
+	/**
+	 *	hack to give add relation custom grocery crud.
+	 */
+	public function get_array_field_with_value_table (){
+		return $this->save_for_search_ajax;
+	}
+	
 	/**
 	 *	hack add relation grocery crud.
 	 *
@@ -31,12 +51,14 @@ class Custom_query_crud_model extends grocery_CRUD_model
 	 */
 	public function set_custom_relation($relation,$fields){
 		$action = $this->uri->segment(3);
-		if($action == 'success') $action = false;
-		if($action == false){
-			$this->db->ar_join[] = $relation;
+		if($action != 'add_validation' && $action != 'add' && $action != 'edit_validation' && $action != 'edit' && $action != 'update' && $action != 'update_validation' && $action != 'insert' && $action != 'delete'){
+			$this->db->setter_qb_join($relation);
+			$this->save_qb_join[] = $relation;
 			foreach($fields as $field)
 			{
 				$this->custom_field[] = $field;
+				$tab = explode('.',$field);
+				$this->save_for_search_ajax[$tab[1]] = $tab[0];
 			}
 		}
 	}

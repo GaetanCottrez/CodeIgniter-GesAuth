@@ -26,6 +26,9 @@ define('VERSION','1.0');
 define('SITE_NAME','GesAuth');
 define('INFORMATION_COMPANY','GesAuth Company <br />253W 28th street<br />New York, NY 10001<br />USA');
 define('DEFAULT_COMPANY','GesAuth');
+define('IS_DYNAMIC_COMPANY', true);
+define('SUPPORT_EMAIL', 'postmaster@laviedunwebdeveloper.com');
+define('BEGIN_DATE', date('Y'));
 
 /* End of file parameters.php */
 /* Location: ./application/config/parameters.php */

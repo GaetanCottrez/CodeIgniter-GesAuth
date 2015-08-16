@@ -75,7 +75,9 @@ $config['gesauth'] = array(
     'gesauth_mode' => 'mysql/ldap', # different values (mysql,ldap,mysql/ldap) if you use mode LDAP, activate extension PHP ldap
 	// default mode authentification
     'gesauth_mode_default' => 'mysql', # different values (mysql,ldap)
-	// Use OpenLDAP_2.x.x ?
+	// include authentification by email ? (only mysql)
+    'authentification_by_email' => true,
+    // Use OpenLDAP_2.x.x ?
 	'OpenLDAP_2.x.x' => true,
 	// Is a previous win2k server ?
 	'PREVIOUS_WIN2K' => false,

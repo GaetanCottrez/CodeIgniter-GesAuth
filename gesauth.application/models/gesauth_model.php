@@ -11,17 +11,22 @@
  * @copyright  	Copyright (c) 2014-2015, Gaëtan Cottrez
  * @license 	GNU GENERAL PUBLIC LICENSE
  * @license 	http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE
- * @version    	1.1.4
+ * @version    	2.0
  * @author 		Gaëtan Cottrez <gaetan.cottrez@laviedunwebdeveloper.com>
  */
 
 class gesauth_model extends CI_Model
 {
-	public $CI;
-    public $config_vars;
-    public $errors = array();
-    public $infos = array();
-    public $file_language = 'gesauth';
+	private $CI;
+    private $config_vars;
+    private $errors = array();
+    private $infos = array();
+    private $file_language = 'gesauth';
+    private $name_table_session;
+	private $last_activity;
+	private $user_data;
+	private $session_id;
+
 
 	public function __construct() {
 
@@ -39,21 +44,38 @@ class gesauth_model extends CI_Model
 
         // the array which came from gesauth config file
         // $this->config_vars
-        $this->config_vars = & $this->CI->config->item('gesauth');
+        $this->config_vars = $this->CI->config->item('gesauth');
+       
+        switch(substr(CI_VERSION,0,1)){
+        	case 3:
+        		$this->name_table_session = $this->CI->config->item('sess_save_path');
+        		$this->last_activity = 'timestamp';
+        		$this->user_data = 'data';
+        		$this->session_id = 'id';
+        	break;
+
+        	case 2:
+        		$this->name_table_session = $this->CI->config->item('sess_table_name');
+        		$this->last_activity = 'last_activity';
+        		$this->user_data = 'user_data';
+        		$this->session_id = 'session_id';
+        	break;
+        
+        }
     }
 
     /**
 	 *	Get information user.
 	 *
-	 *	@param string $id 	id of table user
+	 *	@param string $login 	login of table user
 	 *	@return object		result of request
 	 */
-	public function get_user($id)
+	public function get_user($login)
 	{
 		 return $this->CI->db->select($this->config_vars['users'].'.*, '.$this->config_vars['languages'].'.value AS `value_language`')
 							 ->from($this->config_vars['users'])
 						     ->join($this->config_vars['languages'], $this->config_vars['join_users_languages'])
-						     ->where($this->config_vars['users'].'.id', $id)
+						     ->where($this->config_vars['users'].'.login', $login)
 						     ->get();
 	}
 
@@ -81,13 +103,17 @@ class gesauth_model extends CI_Model
 	 *	@param string $password 	password of table user
 	 *	@return object		result of request
 	 */
-	public function login_user($id,$password='',$fast=FALSE)
+	public function login_user($login,$password='',$fast=FALSE)
 	{
 		 $this->CI->db->select($this->config_vars['users'].'.`id`, '.$this->config_vars['users'].'.`email`, '.$this->config_vars['users'].'.`name`,
 		 '.$this->config_vars['users'].'.`firstname`, '.$this->config_vars['users'].'.`disabled`, '.$this->config_vars['languages'].'.value AS `language`,
 		 '.$this->config_vars['users'].'.`last_login`')
-		 			  ->join($this->config_vars['languages'], $this->config_vars['join_users_languages'])
-		 			  ->where($this->config_vars['users'].'.id', $id);
+		 ->join($this->config_vars['languages'], $this->config_vars['join_users_languages']);
+		 if($this->config_vars['authentification_by_email']){
+			$this->CI->db->where('('.$this->config_vars['users'].'.login = "'.$login.'" OR '.$this->config_vars['users'].'.email = "'.$login.'")');
+		 }else{
+			$this->CI->db->where($this->config_vars['users'].'.login', $login);
+		 }
 		 if($fast == FALSE) $this->CI->db->where('password', sha1($this->config_vars['gesauth_salt'].$password));
 		 return $this->CI->db->where('disabled', 0)
 							 ->get($this->config_vars['users']);
@@ -96,13 +122,13 @@ class gesauth_model extends CI_Model
 	/**
 	 *	update information user.
 	 *
-	 *	@param string $id 	id of table user
+	 *	@param string $id_user 	id of table user
 	 *	@param array $data 	table data user
 	 *	@return object		result of request
 	 */
-	public function update_user($id,$data)
+	public function update_user($id_user,$data)
 	{
-		$this->CI->db->where('id', $id)
+		$this->CI->db->where('id', $id_user)
 					 ->update($this->config_vars['users'], $data);
 	}
 
@@ -147,12 +173,12 @@ class gesauth_model extends CI_Model
 	/**
 	 *	check if user disabled, return false if disabled or not found user
 	 *
-	 *	@param array $user_id is the id user
+	 *	@param array $login is the login user
 	 *	@return object		result of request
 	 */
-	public function is_disabled($user_id) {
+	public function is_disabled($login) {
 
-		return $this->CI->db->where('id', $user_id)
+		return $this->CI->db->where('login', $login)
 							->where('disabled', 1)
 							->get($this->config_vars['users']);
 	}
@@ -177,9 +203,9 @@ class gesauth_model extends CI_Model
 	 */
 	public function clean_session_user_agent_close($timestamp) {
 
-		$this->CI->db->where("last_activity < ", $timestamp)
-					 ->like("user_data",'"user_agent_close";i:1')
-					 ->delete($this->CI->session->sess_table_name);
+		$this->CI->db->where($this->last_activity." < ", $timestamp)
+					 ->like($this->user_data,'"user_agent_close";i:1')
+					 ->delete($this->name_table_session);
 
 	}
 
@@ -190,11 +216,22 @@ class gesauth_model extends CI_Model
 	 */
 	public function clean_session_for_expiration($timestamp, $data) {
 
-		$this->CI->db->where("last_activity < ", $timestamp)
-					 ->update($this->CI->session->sess_table_name, $data);
+		$this->CI->db->where($this->last_activity." < ", $timestamp)
+					 ->update($this->name_table_session, $data);
 
 	//	echo $this->CI->db->last_query();
 
+	}
+	
+	/**
+	 *	Clean old session
+	 *
+	 *	@param array $timestamp is the timestamp for the last_activity
+	 */
+	public function clean_old_session($timestamp) {
+	
+		$this->CI->db->where($this->last_activity." < ", $timestamp)
+		->delete($this->name_table_session);
 	}
 
 	/**
@@ -204,8 +241,8 @@ class gesauth_model extends CI_Model
 	 */
 	public function get_session_in_db() {
 
-		return $this->CI->db->where('session_id', $this->CI->session->userdata('session_id'))
-						   ->get($this->CI->session->sess_table_name);
+		return $this->CI->db->where($this->session_id, $this->CI->session->userdata($this->session_id))
+						   ->get($this->name_table_session);
 
 	}
 
@@ -259,9 +296,9 @@ class gesauth_model extends CI_Model
 	 */
 	public function disconnect_session($data, $user_id, $session_id) {
 
-		return $this->CI->db->where("session_id != ", $session_id)
-							->where("user_data LIKE ", '%"user_id";s:'.strlen($user_id).':"'.$user_id.'"%')
-							->update($this->CI->session->sess_table_name, $data);
+		return $this->CI->db->where($this->session_id." != ", $session_id)
+							->where($this->user_data." LIKE ", '%"user_id";s:'.strlen($user_id).':"'.$user_id.'"%')
+							->update($this->name_table_session, $data);
 
 	}
 

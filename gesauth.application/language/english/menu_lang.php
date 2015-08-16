@@ -25,6 +25,7 @@ $lang['menu_all_right_reserved'] = "All right reserved";
 $lang['menu_in_roles'] = "You endorse the role ";
 $lang['menu_in_no_role'] = "You endorse any role";
 $lang['menu_logout'] = "Disconnect";
+$lang['menu_my_account'] = "My account";
 
 $lang['menu_admin'] = "Administration";
 

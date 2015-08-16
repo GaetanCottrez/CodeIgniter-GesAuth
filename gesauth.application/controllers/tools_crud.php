@@ -33,7 +33,7 @@ class Tools_crud extends Tools_template {
 
 		$this->load->library('grocery_CRUD');
 		$this->grocery_crud->set_model('custom_query_crud_model');
-		$this->config_vars = & $this->config->item('gesauth');
+		$this->config_vars = $this->config->item('gesauth');
 		$this->language = $this->session->userdata($this->config_vars['prefix_session'].'language');
         $this->grocery_crud->set_language($this->language);
 		$this->lang->load('tools_crud',$this->language);

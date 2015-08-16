@@ -31,7 +31,7 @@ class Login extends Tools_template {
 
 		//Set du titre
 		$this->CI =& get_instance();
-		$this->config_vars = & $this->CI->config->item('gesauth');
+		$this->config_vars = $this->CI->config->item('gesauth');
 		$this->language = GetLanguageVistor($this->input->server('HTTP_ACCEPT_LANGUAGE'));
 		$this->lang->load($this->name_class,$this->language);
 		$this->title = $this->lang->line('welcome_title');
@@ -90,8 +90,8 @@ class Login extends Tools_template {
 
 	public function ajax_check() {
 		if($this->input->post('ajax') == '1') {
-			$this->form_validation->set_rules('login', 'nom d\'utilisateur', 'trim|required|xss_clean|callback_login_required');
-			$this->form_validation->set_rules('password', 'mot de passe', 'trim|required|xss_clean|callback_password_required');
+			$this->form_validation->set_rules('login', 'nom d\'utilisateur', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('password', 'mot de passe', 'trim|required|xss_clean');
 			$this->form_validation->set_message('required', $this->lang->line('login_field_required'));
 			if($this->form_validation->run() == FALSE) {
 				$this->var['output'] = validation_errors();

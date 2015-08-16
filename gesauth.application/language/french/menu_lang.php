@@ -25,6 +25,7 @@ $lang['menu_all_right_reserved'] = "Tous droits réservés";
 $lang['menu_in_roles'] = "Vous endossez le rôle ";
 $lang['menu_in_no_role'] = "Vous endossez aucun rôle";
 $lang['menu_logout'] = "Déconnexion";
+$lang['menu_my_account'] = "Mon compte";
 
 $lang['menu_admin'] = "Administration";
 

@@ -37,7 +37,7 @@ class Roles extends Tools_crud {
 	{
 		 parent::__construct();
 
-		 $this->config_vars = & $this->config->item('gesauth');
+		 $this->config_vars = $this->config->item('gesauth');
 
          $this->table = PREFIX.'roles';
 		 $this->lang->load($this->name_class,$this->language);
