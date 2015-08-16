@@ -1,0 +1,475 @@
+body 
+{
+	font-family: 'Open Sans', Arial, tahoma, verdana, arial, sans-serif;
+	font-size: 16px;
+}
+legend
+{
+	margin: 0;
+}
+input[type="radio"]
+{
+	margin-right: 10px;
+}
+.preview-body{
+	-webkit-border-radius: 6px; 
+	-moz-border-radius: 6px; 
+	-khtml-border-radius: 6px; 
+	border-style:solid; 
+	border-width:1px; 
+	border-color:#CCC; 
+	padding: 2px; 
+	border-radius: 6px; 
+	height: 340px; 
+	width: 100%; 
+	background-color:#FFF;
+}
+
+a.refresh
+{
+	background: url('../images/refresh.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 37px;
+	height: 31px;
+	margin: -13px 0 4px 15px;
+	text-indent: -9999px;
+	padding: 0;
+}
+a.refresh:hover
+{
+	transition: none;
+	background-position: center center;
+}
+
+.flexigrid div.form-div input[type=text].second-text
+{
+	margin-left: 20px;
+	position: absolute;
+}
+
+.form-field-box
+{
+	position: relative;
+}
+
+h3.fieldsetorditech .bouton-onglet a
+{
+	padding: 6px 14px;
+	text-decoration: none;
+	margin-left: 20px;
+	border-radius: 5px 5px 0 0;
+	color: #444;
+	font-size: 13px;
+}
+
+h3.fieldsetorditech .bouton-onglet a:hover
+{
+	text-decoration: none;
+}
+
+h3.fieldsetorditech .bouton-onglet a.active
+{
+	background: #5c5c5e;
+	color: white;
+}
+
+#insert_multiple
+{
+	padding: 6px 14px;
+	color: #cd6d00;
+	text-decoration: none;
+	margin-left: 20px;
+	border-radius: 5px 5px 0 0;
+	font-size: 13px;
+}
+
+.bouton-onglet
+{
+	float: left;
+	position: relative;
+}
+
+.delete_onglet
+{
+	text-indent: -9999px;
+	position: absolute;
+	top: -5px;
+	right: -20px;
+	width: 15px;
+	height: 15px;
+	background: url('../images/delete-button.png') no-repeat;
+}
+.tableau-gris table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+.tableau-gris tr:nth-child(odd)
+{ 
+	background-color:#e5e5e5; 
+}
+.tableau-gris tr:nth-child(even) 
+{ 
+	background-color:#ffffff; 
+}
+.tableau-gris table tr td
+{
+	vertical-align:middle;
+	border: 1px solid #b6b6b6;
+	text-align:left;
+	padding:7px;
+	font-size: 12px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+	background: transparent;
+}
+
+.tableau-gris .grey
+{
+		background:-o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #b2b2b2) );
+	background:-moz-linear-gradient( center top, #cccccc 5%, #b2b2b2 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#b2b2b2");	background: -o-linear-gradient(top,#cccccc,b2b2b2);
+
+	background-color:#cccccc;
+	text-align:center;
+	font-size:14px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#000000;
+}
+
+.tableau-gris input[type=text]
+{
+	max-width: 200px;
+}
+
+.designation-editor
+{
+	display: block;
+	width: 100px;
+	height: 50px;
+	background: white;
+	z-index: 9999;
+}
+
+#resume_amount tr:nth-child(odd)
+{
+	background: none;
+}
+#resume_amount tr:nth-child(even)
+{
+	background: none;
+}
+
+input[type=number]
+{
+	padding: 2px 0px 2px 12px;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	background: #fafafa;
+	width: 80px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+input[type=number]:hover
+{
+	background: white;
+}
+
+.tableau-gris .add, .tableau-gris .delete
+{
+	padding: 3px 10px;
+	color: #cd6d00;
+	text-decoration: none;
+	margin-right: 10px;
+	border-radius: 5px;
+	font-size: 13px;
+	display: block;
+	width: auto;
+	float: left;
+}
+div.form-div .tableau-gris .text_input
+{
+	width: 25%;
+	margin: 0 auto;
+	display: block;
+}
+div.form-div .tableau-gris input[type=text].price_input
+{
+	width: 80px;
+	margin: 0 auto;
+	display: block;
+	text-align: right;
+}
+
+.flexigrid div.form-div .form-control[readonly], .form-control[readonly]
+{
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	cursor: initial;
+}
+
+.flexigrid div.form-div div .form-control[readonly]:hover
+{
+	cursor: initial;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+div.tools a.DTTT_button.button-send span
+{
+	background: url('../images/send.png');
+	background-repeat: no-repeat;
+}
+div.tools a.DTTT_button.button-resend span
+{
+	background: url('../images/resend.png');
+	background-repeat: no-repeat;
+}
+div.tools a.DTTT_button.button-invoice span
+{
+	background: url('../images/invoice.png');
+	background-repeat: no-repeat;
+}
+div.tools a.DTTT_button.button-export span
+{
+	background: url('../images/csv.png');
+	background-repeat: no-repeat;
+}
+div.tools a.DTTT_button.button-validate span
+{
+	background: url('../images/validate.png');
+	background-repeat: no-repeat;
+}
+div.tools a.DTTT_button.button-pdf span
+{
+	background: url('../images/pdf.gif');
+	background-repeat: no-repeat;
+}
+div.tools a.DTTT_button.button-rappel span
+{
+	background: url('../images/cloche.png');
+	background-repeat: no-repeat;
+}
+div.tools a.DTTT_button.button-payment span
+{
+	background: url('../images/payment.png');
+	background-repeat: no-repeat;
+}
+div.tools a.DTTT_button.button-new-document span
+{
+	background: url('../images/new_document.png');
+	background-repeat: no-repeat;
+}
+
+#dialog-form-send input, #dialog-form-send textarea
+{
+	width: 500px;
+}
+
+#mail td:first-child
+{
+	padding-right: 20px;
+}
+
+#upload input
+{
+	width: auto;
+	display: block;
+	float: left;
+	width: 20px;
+	margin-right: 20px;
+}
+#upload p
+{
+	display: block;
+	float: left;
+	width: 300px;
+	margin: 10px;
+}
+#upload img
+{
+	width: 16px;
+	height: 16px;
+	display: block;
+	float: left;
+	margin: 10px;
+}
+
+.flexigrid div.bDiv td div.tools a
+{
+	float: none;
+	display: inline-block;
+}
+
+.right
+{
+	display: block;
+	float: right;
+}
+
+.left
+{
+	display: block;
+	float: left;
+}
+
+.ui-icon.white
+{
+	background-image: url(../grocery_crud/themes/twitter-bootstrap/css/jquery-ui/flick/images/ui-icons_ffffff_256x240.png);
+	
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+body .ui-tooltip
+{
+	background: #a2a5aa;
+	color: white;
+}
+
+.upload-success-url .delete-anchor
+{
+	text-indent: -9999px;
+	width: 15px;
+	height: 15px;
+	display: block;
+	float: right;
+	margin-left: 15px;
+	background: url('../images/delete-button.png') no-repeat;
+}
+.upload-success-url a.open-file
+{
+	font-weight: normal;
+	color: #444;
+}
+
+.lines-col
+{
+	width: 50px;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+@font-face {
+font-family: 'Open Sans';
+src: local('Open Sans'), url('fonts/open-sans/OpenSans-Regular.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Light';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Light'), url('fonts/open-sans/OpenSans-Light.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Semibold Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Semibold Italic'), url('fonts/open-sans/OpenSans-SemiboldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Semibold';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Semibold'), url('fonts/open-sans/OpenSans-Semibold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Light Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Light Italic'), url('fonts/open-sans/OpenSans-LightItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Italic'), url('fonts/open-sans/OpenSans-Italic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Extrabold Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Extrabold Italic'), url('fonts/open-sans/OpenSans-ExtraBoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Extrabold';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Extrabold'), url('fonts/open-sans/OpenSans-ExtraBold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Bold Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Bold Italic'), url('fonts/open-sans/OpenSans-BoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Open Sans Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Open Sans Bold'), url('fonts/open-sans/OpenSans-Bold.woff') format('woff');
+}
+
+#document_input_box
+{
+	width: 100%;
+}
+
+.drag_line
+{
+	text-indent: -9999px;
+	position: absolute;
+	background: url('../images/drag.png');
+	width: 16px;
+	height: 16px;
+	margin-top: 5px;
+	margin-left: 10px;
+
+	-webkit-transition: -webkit-transform .8s ease-in-out;
+    -ms-transition: -ms-transform .8s ease-in-out;
+    transition: transform .8s ease-in-out;
+}
+
+.drag_line:hover
+{
+	transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    cursor: move;
+}
+

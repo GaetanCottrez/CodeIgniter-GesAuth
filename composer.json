@@ -1,9 +1,11 @@
 {
-    "name" : "anvoz/CodeIgniter-Skeleton",
-    "require": {
-        "php": ">=5.2.4"
-    },
-    "require-dev": {
-        "mikey179/vfsStream": "1.1.*"
-    }
+	"description" : "The CodeIgniter framework",
+	"name" : "codeigniter/framework",
+	"license": "MIT",
+	"require": {
+		"php": ">=5.2.4"
+	},
+	"require-dev": {
+		"mikey179/vfsStream": "1.1.*"
+	}
 }
