@@ -13,7 +13,7 @@ The folder package contains all files to library GesAuth
 
 ##Latest release
 
-GesAuth 2.0 (16/08/2015)
+GesAuth 2.0.1 (16/08/2015)
 
 ##What is new in version 2.0
 
